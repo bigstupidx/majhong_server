@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="true" xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="console"
+			  class="org.apache.log4j.ConsoleAppender">
+		<param name="Threshold" value="info"></param>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d (%F:%L) %-5p %c - %m%n"/>
+		</layout>
+	</appender>
+
+	<!--
+	<appender name="file"
+			  class="org.apache.log4j.FileAppender">
+		<param name="Threshold" value="info"></param>
+		<param name="Append" value="false"/>
+		<param name="ImmediateFlush" value="true"></param>
+		<param name="BufferSize" value="8192"></param>
+		<param name="File" value="logs/game_server.log"></param>
+		<param name="encoding" value="utf-8"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss\} %-5p] [%t] {%c:%L}-%m%n"></param>
+		</layout>
+	</appender>
+	-->
+	<root>
+		<priority value="info" />
+		<appender-ref ref="console" />
+		<!--<appender-ref ref="file" /> -->
+	</root>
+
+</log4j:configuration>
