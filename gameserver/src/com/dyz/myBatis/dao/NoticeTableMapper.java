@@ -14,8 +14,10 @@ public interface NoticeTableMapper {
     int updateByPrimaryKeySelective(NoticeTable record);
 
     int updateByPrimaryKey(NoticeTable record);
+
     /**
      * 获取最近的一次公告
+     *
      * @return
      */
     NoticeTable selectRecentlyObject();

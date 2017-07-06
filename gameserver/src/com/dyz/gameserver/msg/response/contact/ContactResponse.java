@@ -8,23 +8,23 @@ import java.io.IOException;
 
 /**
  * app端获取充卡联系人信息
- * @author luck
  *
+ * @author luck
  */
 public class ContactResponse extends ServerResponse {
-	
-	
+
+
     public ContactResponse(int status, String content) {
         super(status, ConnectAPI.HOST_ADDROOMCARD_RESPONSE);
-        if(status >0){
+        if (status > 0) {
             try {
                 output.writeUTF(content);
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-           	 output.close();
-			}
+                output.close();
+            }
         }
-       // entireMsg();
+        // entireMsg();
     }
 }

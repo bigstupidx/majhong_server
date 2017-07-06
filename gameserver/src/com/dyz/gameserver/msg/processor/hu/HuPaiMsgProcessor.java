@@ -13,25 +13,22 @@ import com.dyz.gameserver.pojo.CardVO;
 import com.dyz.persist.util.JsonUtilTool;
 
 /**
- * 
  * @author luck
- *
  */
 public class HuPaiMsgProcessor extends MsgProcessor implements
         INotAuthProcessor {
     @Override
     public void process(GameSession gameSession, ClientRequest request) throws Exception {
         RoomLogic roomLogic = RoomManager.getInstance().getRoom(gameSession.getRole(Avatar.class).getRoomVO().getRoomId());
-        if(roomLogic != null){
-           CardVO cardVO = JsonUtilTool.fromJson(request.getString(),CardVO.class);
-           boolean isHu =  roomLogic.huPai(gameSession.getRole(Avatar.class),cardVO.getCardPoint(),cardVO.getType());
-           if(isHu){
-           }
-           else{
-        	   //system.out.println("胡不起");
-               gameSession.sendMsg(new ErrorResponse(ErrorCode.Error_000023));
-           }
-        }else{
+        if (roomLogic != null) {
+            CardVO cardVO = JsonUtilTool.fromJson(request.getString(), CardVO.class);
+            boolean isHu = roomLogic.huPai(gameSession.getRole(Avatar.class), cardVO.getCardPoint(), cardVO.getType());
+            if (isHu) {
+            } else {
+                //system.out.println("胡不起");
+                gameSession.sendMsg(new ErrorResponse(ErrorCode.Error_000023));
+            }
+        } else {
             gameSession.sendMsg(new ErrorResponse(ErrorCode.Error_000005));
         }
 

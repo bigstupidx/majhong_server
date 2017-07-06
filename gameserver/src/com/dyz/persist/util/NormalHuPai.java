@@ -2,6 +2,7 @@ package com.dyz.persist.util;
 
 import java.util.List;
 import java.util.ArrayList;
+
 import com.context.NanjingConfig;
 import com.context.Rule;
 import com.dyz.gameserver.Avatar;
@@ -15,18 +16,17 @@ public class NormalHuPai {
      * //   将牌标志，即牌型“三三三三二”中的“二”
      */
     private int JIANG = 0;
-    
-    
-    
-    public static void main(String[] args){
-    	int[] pai = new int[]{0,0,0,3,1,0,1,1,1, 0, 0, 0,0,0,0,0,0,0,0,0,1,2,0,1,1,1,1};
-    	//int [] pai = new int[]{0,0,0,0,0,0,1,1,1,     0,0,2,0,3,1,1,1,0,     0,0,1,1,1,0,0,0,0,   0,0,0,0,0,0,0};
-    	NormalHuPai normalHuPai = new NormalHuPai();
-    	boolean flag = normalHuPai.isNanjingPai(pai);
-    	System.out.println(flag);
+
+
+    public static void main(String[] args) {
+        int[] pai = new int[]{0, 0, 0, 3, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 1, 1, 1, 1};
+        //int [] pai = new int[]{0,0,0,0,0,0,1,1,1,     0,0,2,0,3,1,1,1,0,     0,0,1,1,1,0,0,0,0,   0,0,0,0,0,0,0};
+        NormalHuPai normalHuPai = new NormalHuPai();
+        boolean flag = normalHuPai.isNanjingPai(pai);
+        System.out.println(flag);
     }
 
-    public  int checkNanjingHu(Avatar avatar, Avatar avatarShu,List<Avatar> playerList, int[][] paiList, Integer cardIndex, int flag){
+    public int checkNanjingHu(Avatar avatar, Avatar avatarShu, List<Avatar> playerList, int[][] paiList, Integer cardIndex, int flag) {
         JIANG = 0;
         int oneCardCount = 0;
         int twoCardCount = 0;
@@ -65,7 +65,7 @@ public class NormalHuPai {
         int[] pai = GlobalUtil.CloneIntList(paiList[0]);
         int result = 0;
         List<Integer> pengGangIndexList = new ArrayList<Integer>();
-        for(int i=0;i<pai.length;i++){
+        for (int i = 0; i < pai.length; i++) {
             int paiCount = pai[i];
             if (i >= NanjingConfig.HUA_INDEX) {
                 huaCount += paiCount;
@@ -78,7 +78,7 @@ public class NormalHuPai {
                             result = 0;
                             return 0;
                         }
-                        if(cardIndex == i) cardHandOne = true;
+                        if (cardIndex == i) cardHandOne = true;
                     } else if (paiCount == 2) {
                         twoCardCount++;
                         if (i >= 27) {
@@ -205,9 +205,9 @@ public class NormalHuPai {
         // check yi se
         if ((result & Rule.Hu_Type_Kuaizhao) == 0 || (result & Rule.Hu_Type_Quanqiududiao) > 0) {
             boolean yise = false;
-            if (wanCount > 0 && tiaoCount == 0 && tongCount == 0)  yise = true;
-            if (tiaoCount > 0 && wanCount == 0 && tongCount == 0)  yise = true;
-            if (tongCount > 0 && tiaoCount == 0 && wanCount == 0)  yise = true;
+            if (wanCount > 0 && tiaoCount == 0 && tongCount == 0) yise = true;
+            if (tiaoCount > 0 && wanCount == 0 && tongCount == 0) yise = true;
+            if (tongCount > 0 && tiaoCount == 0 && wanCount == 0) yise = true;
 
             if (yise && fengCount > 0) result += Rule.Hu_Type_Hunyise;
             else if (yise && fengCount == 0) result += Rule.Hu_Type_Qingyise;
@@ -216,7 +216,8 @@ public class NormalHuPai {
         // check dui dui hu
         {
             if ((gangCount + pengCount) == 4 && twoCardCount == 1) result += Rule.Hu_Type_Quanqiududiao;
-            else if ((gangCount + pengCount + threeCardHandCount) == 4 && twoCardCount == 1) result += Rule.Hu_Type_DuiDuihu;
+            else if ((gangCount + pengCount + threeCardHandCount) == 4 && twoCardCount == 1)
+                result += Rule.Hu_Type_DuiDuihu;
         }
 
         // check gang kai hua
@@ -233,15 +234,18 @@ public class NormalHuPai {
                 int card = cardIndex % 9;
                 // yadang
                 if (card > 0 && card < 8) {
-                    if (pai[cardIndex] <= 2 && pai[cardIndex - 1] == pai[cardIndex]  && pai[cardIndex + 1]  == pai[cardIndex] ) yadang = true;
+                    if (pai[cardIndex] <= 2 && pai[cardIndex - 1] == pai[cardIndex] && pai[cardIndex + 1] == pai[cardIndex])
+                        yadang = true;
                 }
 
                 // bianzhi
                 if (card == 2) {
-                    if (pai[cardIndex] <= 2 && pai[cardIndex - 2] == pai[cardIndex]  && pai[cardIndex - 1] == pai[cardIndex] ) bianzhi = true;
+                    if (pai[cardIndex] <= 2 && pai[cardIndex - 2] == pai[cardIndex] && pai[cardIndex - 1] == pai[cardIndex])
+                        bianzhi = true;
                 }
                 if (card == 6) {
-                    if (pai[cardIndex] <= 2 && pai[cardIndex + 1] == pai[cardIndex]  && pai[cardIndex + 2] == pai[cardIndex] ) bianzhi = true;
+                    if (pai[cardIndex] <= 2 && pai[cardIndex + 1] == pai[cardIndex] && pai[cardIndex + 2] == pai[cardIndex])
+                        bianzhi = true;
                 }
             }
         }
@@ -292,11 +296,11 @@ public class NormalHuPai {
                 if (tiaoCount == 0) ruanHua++;
                 if (tongCount == 0) ruanHua++;
                 if ((result & Rule.Hu_Type_Yajue) == 0) {
-                    ruanHua += yadang? 1: 0;
-                    ruanHua += bianzhi? 1: 0;
+                    ruanHua += yadang ? 1 : 0;
+                    ruanHua += bianzhi ? 1 : 0;
                 }
 
-                ruanHua += duzhan? 1: 0;
+                ruanHua += duzhan ? 1 : 0;
 
                 result += ruanHua << 22;
                 result += huaCount << 26;
@@ -310,11 +314,11 @@ public class NormalHuPai {
         if (Remain(paiList) == 0) {
             return true;           //   递归退出条件：如果没有剩牌，则胡牌返回。
         }
-        for (int i = 0;  i < paiList.length; i++) {//   找到有牌的地方，i就是当前牌,   PAI[i]是个数
+        for (int i = 0; i < paiList.length; i++) {//   找到有牌的地方，i就是当前牌,   PAI[i]是个数
             if (i >= NanjingConfig.HUA_INDEX) continue;
             //   跟踪信息
             //   4张组合(杠子)
-            if(paiList[i] != 0){
+            if (paiList[i] != 0) {
                 if (paiList[i] == 4)                               //   如果当前牌数等于4张
                 {
                     paiList[i] = 0;                                     //   除开全部4张牌
@@ -335,7 +339,7 @@ public class NormalHuPai {
                 }
 
                 //   2张组合(将牌)
-                if (JIANG ==0 && paiList[i] >= 2)           //   如果之前没有将牌，且当前牌不少于2张
+                if (JIANG == 0 && paiList[i] >= 2)           //   如果之前没有将牌，且当前牌不少于2张
                 {
                     JIANG = 1;                                       //   设置将牌标志
                     paiList[i] -= 2;                                   //   减去2张牌
@@ -346,7 +350,7 @@ public class NormalHuPai {
 
                 //   顺牌组合，注意是从前往后组合！
                 //   排除数值为8,9的牌和风
-                if ( i < 27 && (i % 9 != 7) && (i % 9 != 8) && paiList[i+1] != 0 && paiList[i+2] !=0 )             //   如果后面有连续两张牌
+                if (i < 27 && (i % 9 != 7) && (i % 9 != 8) && paiList[i + 1] != 0 && paiList[i + 2] != 0)             //   如果后面有连续两张牌
                 {
                     paiList[i]--;
                     paiList[i + 1]--;

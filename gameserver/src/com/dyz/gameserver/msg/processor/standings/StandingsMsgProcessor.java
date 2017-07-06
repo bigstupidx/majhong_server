@@ -28,53 +28,52 @@ import com.dyz.persist.util.StringUtil;
 
 /**
  * 返回战绩
- * @author luck
  *
+ * @author luck
  */
 public class StandingsMsgProcessor extends MsgProcessor implements
-INotAuthProcessor {
+        INotAuthProcessor {
 
-	@Override
-	public void process(GameSession gameSession, ClientRequest request) throws Exception {
-	       if(GlobalUtil.checkIsLogin(gameSession)) {
-	    	   String id = request.getString();
-	            Avatar avatar = gameSession.getRole(Avatar.class);
-	            if (avatar == null) {
-	                //system.out.println("用户是空的");
-	            }else{
-	            	List<Integer> ids = new ArrayList<>();
-	            	JSONArray  array;
-	            	if(id.equals("0")){
-	            		array = new JSONArray();
-	            		JSONObject json;
-	            		//房间战绩
-	            		int accountId = avatar.avatarVO.getAccount().getId();
-	            		ids = StandingsAccountRelationService.getInstance().selectNearestStandingsIdByAccountId(accountId);
-	            		Standings standings;
-	            		for (Integer i : ids) {
-	            			json =new JSONObject();
-	            			standings = StandingsService.getInstance().selectByPrimaryKey(i);
-	            			json.put("roomId",RoomInfoService.getInstance().selectByPrimaryKey(standings.getRoomid()).getRoomid());
-	            			json.put("data", standings);
-	            			array.add(json);
-						}
-	            		gameSession.sendMsg(new StandingsResponse(1, array.toJSONString()));
-	            	}
-	            	else{
-	            		//每一局战绩(id为standingsId)
-	            		StandingsDetail standingsDetail;
-	            		array = new JSONArray();
-	            		ids = StandingsRelationService.getInstance().selectDetailIdsByStandingsId(Integer.parseInt(id));
-	            		for (Integer i : ids) {
-	            			standingsDetail = StandingsDetailService.getInstance().selectByPrimaryKey(i);
-	            			array.add(standingsDetail);
-						}
-	            		gameSession.sendMsg(new StandingsDetailResponse(1, array.toJSONString()));
-	            	}
-	            }
-	        }else{
-	            //system.out.println("该用户还没有登录");
-	            gameSession.destroyObj();
-	        }
-	}
+    @Override
+    public void process(GameSession gameSession, ClientRequest request) throws Exception {
+        if (GlobalUtil.checkIsLogin(gameSession)) {
+            String id = request.getString();
+            Avatar avatar = gameSession.getRole(Avatar.class);
+            if (avatar == null) {
+                //system.out.println("用户是空的");
+            } else {
+                List<Integer> ids = new ArrayList<>();
+                JSONArray array;
+                if (id.equals("0")) {
+                    array = new JSONArray();
+                    JSONObject json;
+                    //房间战绩
+                    int accountId = avatar.avatarVO.getAccount().getId();
+                    ids = StandingsAccountRelationService.getInstance().selectNearestStandingsIdByAccountId(accountId);
+                    Standings standings;
+                    for (Integer i : ids) {
+                        json = new JSONObject();
+                        standings = StandingsService.getInstance().selectByPrimaryKey(i);
+                        json.put("roomId", RoomInfoService.getInstance().selectByPrimaryKey(standings.getRoomid()).getRoomid());
+                        json.put("data", standings);
+                        array.add(json);
+                    }
+                    gameSession.sendMsg(new StandingsResponse(1, array.toJSONString()));
+                } else {
+                    //每一局战绩(id为standingsId)
+                    StandingsDetail standingsDetail;
+                    array = new JSONArray();
+                    ids = StandingsRelationService.getInstance().selectDetailIdsByStandingsId(Integer.parseInt(id));
+                    for (Integer i : ids) {
+                        standingsDetail = StandingsDetailService.getInstance().selectByPrimaryKey(i);
+                        array.add(standingsDetail);
+                    }
+                    gameSession.sendMsg(new StandingsDetailResponse(1, array.toJSONString()));
+                }
+            }
+        } else {
+            //system.out.println("该用户还没有登录");
+            gameSession.destroyObj();
+        }
+    }
 }

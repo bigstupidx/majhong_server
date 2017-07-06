@@ -18,11 +18,11 @@ public class AccountService {
 
     private static AccountService accountService = new AccountService();
 
-    public static AccountService getInstance(){
+    public static AccountService getInstance() {
         return accountService;
     }
 
-    public void initSetSession(SqlSessionFactory sqlSessionFactory){
+    public void initSetSession(SqlSessionFactory sqlSessionFactory) {
         accMap = new AccountDaoImp(sqlSessionFactory);
     }
 
@@ -39,28 +39,29 @@ public class AccountService {
             System.out.println(e.getMessage());
         }
     }*/
+
     /**
-     *
      * @param account
      * @throws SQLException
      */
-    public int updateByPrimaryKeySelective(Account account){
-    	   int index = 0;
-        try{
+    public int updateByPrimaryKeySelective(Account account) {
+        int index = 0;
+        try {
             index = accMap.updateByPrimaryKeySelective(account);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-		return index;
+        return index;
     }
 
     /**
      * 创建新用户
+     *
      * @param account
      * @return 插入信息表中id
      * @throws SQLException
      */
-    public int createAccount(Account account) throws SQLException{
+    public int createAccount(Account account) throws SQLException {
         int index = accMap.insertSelective(account);
         //System.out.println("-account insert index->>" + index);
         return index;
@@ -71,22 +72,22 @@ public class AccountService {
         accountExample.createCriteria().andOpenidEqualTo(openId);
         try {
             List<Account> accounts = accMap.selectByExample(accountExample);
-            if(accounts!=null && accounts.size()>0){
+            if (accounts != null && accounts.size() > 0) {
                 return accounts.get(0);
-            }else{
+            } else {
                 return null;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public List<Account> selectAll(){
+    public List<Account> selectAll() {
         List<Account> accounts = null;
         try {
             accounts = accMap.selectAllAccounts();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return accounts;
@@ -94,43 +95,45 @@ public class AccountService {
 
     /**
      * 创建新用户
+     *
      * @param
      * @return 插入信息表中id
      * @throws SQLException
      */
-    public int selectMaxId() throws SQLException{
+    public int selectMaxId() throws SQLException {
         int index = accMap.selectMaxId();
         System.out.println("-account selectMaxId index->>" + index);
         return index;
     }
-     
-    public Account selectByPrimaryKey(Integer id){
-    	
-    	return accMap.selectByPrimaryKey(id);
+
+    public Account selectByPrimaryKey(Integer id) {
+
+        return accMap.selectByPrimaryKey(id);
     }
-    
+
     public Account selectByUUid(int parseInt) {
-		return accMap.selectByUuid(parseInt);
-	}
-    
+        return accMap.selectByUuid(parseInt);
+    }
+
     /**
      * 获取所有前一天玩过游戏的玩家
      */
-    public  List<Account> selectIsGames(){
-    	
-		return accMap.selectIsGames();
+    public List<Account> selectIsGames() {
+
+        return accMap.selectIsGames();
     }
+
     /**
      * 获取所有游戏的玩家
      */
-    public  List<Account> selectAllAccounts(){
-    	
-		return accMap.selectAllAccounts();
+    public List<Account> selectAllAccounts() {
+
+        return accMap.selectAllAccounts();
     }
-    
-    public int updatePrizeCount(Integer prizecount){
-    	
-    	return accMap.updatePrizeCount(prizecount);
+
+    public int updatePrizeCount(Integer prizecount) {
+
+        return accMap.updatePrizeCount(prizecount);
     }
 
 }

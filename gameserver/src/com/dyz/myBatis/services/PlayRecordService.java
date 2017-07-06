@@ -8,35 +8,34 @@ import com.dyz.myBatis.model.PlayRecord;
 
 public class PlayRecordService {
 
-	
-	  private PlayRecordMapper playRecordMapper;
 
-	    private static PlayRecordService playRecordService = new PlayRecordService();
+    private PlayRecordMapper playRecordMapper;
 
-	    public static PlayRecordService getInstance(){
-	        return playRecordService;
-	    }
+    private static PlayRecordService playRecordService = new PlayRecordService();
 
-	    public void initSetSession(SqlSessionFactory sqlSessionFactory){
-	    	playRecordMapper = new PlayRecordImp(sqlSessionFactory);
-	    }
-	    
-	    
-	    
-	    public PlayRecord selectByPrimaryKey(Integer id) {
-	    	PlayRecord playrecord = playRecordMapper.selectByPrimaryKey(id);
-	        return playrecord;
-		}
-	    
-	    public int saveSelective(PlayRecord playRecord){
-	    	 int index = playRecordMapper.saveSelective(playRecord);
-	         System.out.println("-account insert index->>" + index);
-	         return index;
-	    }
-	    
-	    
-	    public PlayRecord selectByStandingsDetailId(Integer id) {
-	    	PlayRecord playrecord = playRecordMapper.selectByStandingsDetailId(id);
-	        return playrecord;
-		}
+    public static PlayRecordService getInstance() {
+        return playRecordService;
+    }
+
+    public void initSetSession(SqlSessionFactory sqlSessionFactory) {
+        playRecordMapper = new PlayRecordImp(sqlSessionFactory);
+    }
+
+
+    public PlayRecord selectByPrimaryKey(Integer id) {
+        PlayRecord playrecord = playRecordMapper.selectByPrimaryKey(id);
+        return playrecord;
+    }
+
+    public int saveSelective(PlayRecord playRecord) {
+        int index = playRecordMapper.saveSelective(playRecord);
+        System.out.println("-account insert index->>" + index);
+        return index;
+    }
+
+
+    public PlayRecord selectByStandingsDetailId(Integer id) {
+        PlayRecord playrecord = playRecordMapper.selectByStandingsDetailId(id);
+        return playrecord;
+    }
 }

@@ -21,12 +21,12 @@ public class LocationMsgProcessor extends MsgProcessor implements INotAuthProces
     @Override
     public void process(GameSession gameSession, ClientRequest request) throws Exception {
         Avatar avatar = gameSession.getRole(Avatar.class);
-        if(avatar != null){
+        if (avatar != null) {
             JSONObject json = JSONObject.fromObject(request.getString());
-            avatar.avatarVO.setLatitude((double)json.get("latitude"));
-            avatar.avatarVO.setLongitude((double)json.get("longitude"));
+            avatar.avatarVO.setLatitude((double) json.get("latitude"));
+            avatar.avatarVO.setLongitude((double) json.get("longitude"));
             avatar.avatarVO.setAddress(json.get("address").toString());
-        }else{
+        } else {
             gameSession.sendMsg(new ErrorResponse(ErrorCode.Error_000024));
         }
     }

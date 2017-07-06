@@ -15,14 +15,14 @@ import net.sf.json.JSONObject;
 
 /**
  * 暂时不用整个类
- * @author luck
  *
+ * @author luck
  */
-public class loginBackMsgProcessor extends MsgProcessor implements INotAuthProcessor{
+public class loginBackMsgProcessor extends MsgProcessor implements INotAuthProcessor {
 
-	@Override
-	public void process(GameSession gameSession, ClientRequest request) throws Exception {
-		
+    @Override
+    public void process(GameSession gameSession, ClientRequest request) throws Exception {
+
 		/*if(GlobalUtil.checkIsLogin(gameSession)) {
 			JSONObject json = JSONObject.fromObject(request.getString());
 			int roomId = (int)json.get("roomId");
@@ -44,6 +44,6 @@ public class loginBackMsgProcessor extends MsgProcessor implements INotAuthProce
 			System.out.println("该用户还没有登录");
 			gameSession.destroyObj();
 		}*/
-	}
+    }
 
 }

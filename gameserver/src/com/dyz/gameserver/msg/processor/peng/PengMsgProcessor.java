@@ -13,9 +13,7 @@ import com.dyz.gameserver.pojo.CardVO;
 import com.dyz.persist.util.JsonUtilTool;
 
 /**
- * 
  * @author luck
- *
  */
 public class PengMsgProcessor extends MsgProcessor implements
         INotAuthProcessor {
@@ -23,16 +21,15 @@ public class PengMsgProcessor extends MsgProcessor implements
     public void process(GameSession gameSession, ClientRequest request) throws Exception {
         RoomLogic roomLogic = RoomManager.getInstance().getRoom(gameSession.getRole(Avatar.class).getRoomVO().getRoomId());
         //system.out.println("前端发送碰牌消息");
-        if(roomLogic != null){
-            CardVO cardVO = JsonUtilTool.fromJson(request.getString(),CardVO.class);
-           boolean isPeng =  roomLogic.pengCard(gameSession.getRole(Avatar.class),cardVO.getCardPoint());
-           if(isPeng){
-        	   //system.out.println("碰起");
-           }
-           else{
-        	   //system.out.println("碰不起");
-           }
-        }else{
+        if (roomLogic != null) {
+            CardVO cardVO = JsonUtilTool.fromJson(request.getString(), CardVO.class);
+            boolean isPeng = roomLogic.pengCard(gameSession.getRole(Avatar.class), cardVO.getCardPoint());
+            if (isPeng) {
+                //system.out.println("碰起");
+            } else {
+                //system.out.println("碰不起");
+            }
+        } else {
             gameSession.sendMsg(new ErrorResponse(ErrorCode.Error_000005));
         }
 

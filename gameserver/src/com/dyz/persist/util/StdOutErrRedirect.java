@@ -3,6 +3,7 @@ package com.dyz.persist.util;
 /**
  * Created by Gener on 2017/5/2.
  */
+
 import java.io.PrintStream;
 
 import org.apache.commons.logging.Log;
@@ -23,73 +24,81 @@ public class StdOutErrRedirect {
         return new PrintStream(printStream) {
             @Override
             public void print(final String string) {
-                if (!isErr){
+                if (!isErr) {
                     logger.debug(string);
-                }else{
+                } else {
                     logger.error(string);
                 }
             }
+
             @Override
             public void print(boolean b) {
-                if (!isErr){
+                if (!isErr) {
                     logger.debug(Boolean.valueOf(b));
-                }else{
+                } else {
                     logger.error(Boolean.valueOf(b));
                 }
             }
+
             @Override
             public void print(char c) {
-                if (!isErr){
+                if (!isErr) {
                     logger.debug(Character.valueOf(c));
-                }else{
+                } else {
                     logger.error(Character.valueOf(c));
                 }
             }
+
             @Override
             public void print(int i) {
-                if (!isErr){
+                if (!isErr) {
                     logger.debug(String.valueOf(i));
-                }else{
+                } else {
                     logger.error(String.valueOf(i));
                 }
             }
+
             @Override
             public void print(long l) {
-                if (!isErr){
+                if (!isErr) {
                     logger.debug(String.valueOf(l));
-                }else{
+                } else {
                     logger.error(String.valueOf(l));
                 }
             }
+
             @Override
             public void print(float f) {
-                if (!isErr){
+                if (!isErr) {
                     logger.debug(String.valueOf(f));
-                }else{
+                } else {
                     logger.error(String.valueOf(f));
                 }
             }
+
             @Override
             public void print(double d) {
-                if (!isErr){
+                if (!isErr) {
                     logger.debug(String.valueOf(d));
-                }else{
+                } else {
                     logger.error(String.valueOf(d));
                 }
             }
+
             @Override
             public void print(char[] x) {
-                if (!isErr){
+                if (!isErr) {
                     logger.debug(x == null ? null : new String(x));
-                }else{
+                } else {
                     logger.error(x == null ? null : new String(x));
                 }
             }
+
             @Override
             public void print(Object obj) {
-                if (!isErr){
+                if (!isErr) {
                     logger.debug(obj);
-                }else{
+                } else {
                     logger.error(obj);
                 }
             }

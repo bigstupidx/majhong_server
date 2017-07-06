@@ -15,38 +15,38 @@ import net.sf.json.JSONObject;
 
 /**
  * 退出房间
- * @author luck
  *
+ * @author luck
  */
 public class OutRoomMsgProcessor extends MsgProcessor implements
-		INotAuthProcessor {
+        INotAuthProcessor {
 
-	public OutRoomMsgProcessor() {
-	}
+    public OutRoomMsgProcessor() {
+    }
 
-	@Override
-	public void process(GameSession gameSession, ClientRequest request)
-			throws Exception {
-		if(GlobalUtil.checkIsLogin(gameSession)) {
-			JSONObject json = JSONObject.fromObject(request.getString());
-			int roomId = (int)json.get("roomId");
-			Avatar avatar = gameSession.getRole(Avatar.class);
-			if (avatar != null && roomId != 0) {
-				RoomLogic roomLogic = RoomManager.getInstance().getRoom(roomId);
-				if (roomLogic != null) {
-					//退出房间
-					roomLogic.exitRoom(avatar);
-				} else {
-					json = new JSONObject();
-					json.put("status_code", "0");
-					json.put("type", "-1");
-					json.put("uuid", avatar.getUuId());
-					json.put("accountName", avatar.avatarVO.getAccount().getNickname());
-					avatar.getSession().setLogin(true);
-					avatar.getSession().sendMsg(new OutRoomResponse(1, json.toString()));
-					GameServerContext.add_onLine_Character(avatar);
-				}
-			}
-		}
-	}
+    @Override
+    public void process(GameSession gameSession, ClientRequest request)
+            throws Exception {
+        if (GlobalUtil.checkIsLogin(gameSession)) {
+            JSONObject json = JSONObject.fromObject(request.getString());
+            int roomId = (int) json.get("roomId");
+            Avatar avatar = gameSession.getRole(Avatar.class);
+            if (avatar != null && roomId != 0) {
+                RoomLogic roomLogic = RoomManager.getInstance().getRoom(roomId);
+                if (roomLogic != null) {
+                    //退出房间
+                    roomLogic.exitRoom(avatar);
+                } else {
+                    json = new JSONObject();
+                    json.put("status_code", "0");
+                    json.put("type", "-1");
+                    json.put("uuid", avatar.getUuId());
+                    json.put("accountName", avatar.avatarVO.getAccount().getNickname());
+                    avatar.getSession().setLogin(true);
+                    avatar.getSession().sendMsg(new OutRoomResponse(1, json.toString()));
+                    GameServerContext.add_onLine_Character(avatar);
+                }
+            }
+        }
+    }
 }

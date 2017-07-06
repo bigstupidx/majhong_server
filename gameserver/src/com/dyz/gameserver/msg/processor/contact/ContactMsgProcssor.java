@@ -12,29 +12,28 @@ import com.dyz.persist.util.GlobalUtil;
 
 /**
  * 前段点+号显示联系信息
- * @author luck
  *
+ * @author luck
  */
 public class ContactMsgProcssor extends MsgProcessor implements
         INotAuthProcessor {
 
-    public ContactMsgProcssor(){
+    public ContactMsgProcssor() {
 
     }
 
     @Override
     public void process(GameSession gameSession, ClientRequest request) throws Exception {
 
-		if(GlobalUtil.checkIsLogin(gameSession)) {
-			Avatar avatar = gameSession.getRole(Avatar.class);
-			if (avatar != null) {
-				ContactWay contactWay =  ContactWayService.getInstance().selectByPrimaryKey(1);
-				gameSession.sendMsg(new ContactResponse(1, contactWay.getContent()) );
-			}
-		}
-		else{
-			gameSession.destroyObj();
-		}
-	
+        if (GlobalUtil.checkIsLogin(gameSession)) {
+            Avatar avatar = gameSession.getRole(Avatar.class);
+            if (avatar != null) {
+                ContactWay contactWay = ContactWayService.getInstance().selectByPrimaryKey(1);
+                gameSession.sendMsg(new ContactResponse(1, contactWay.getContent()));
+            }
+        } else {
+            gameSession.destroyObj();
+        }
+
     }
 }

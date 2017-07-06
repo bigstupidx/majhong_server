@@ -34,73 +34,73 @@ public class Account {
     private Date lastlogintime;
 
     private String status;
-    
+
     private int prizecount;
     //玩家当天是否玩过游戏
     private String isGame;
-    
-    
+
+
     public String getIsGame() {
-		return isGame;
-	}
+        return isGame;
+    }
 
-	public void setIsGame(String isGame) {
-		this.isGame = isGame;
-	}
+    public void setIsGame(String isGame) {
+        this.isGame = isGame;
+    }
 
-	public Integer getManagerUpId() {
-		return managerUpId;
-	}
+    public Integer getManagerUpId() {
+        return managerUpId;
+    }
 
-	public void setManagerUpId(Integer managerUpId) {
-		this.managerUpId = managerUpId;
-	}
+    public void setManagerUpId(Integer managerUpId) {
+        this.managerUpId = managerUpId;
+    }
 
-	public Integer getActualcard() {
-		return actualcard;
-	}
+    public Integer getActualcard() {
+        return actualcard;
+    }
 
-	public void setActualcard(Integer actualcard) {
-		this.actualcard = actualcard;
-	}
+    public void setActualcard(Integer actualcard) {
+        this.actualcard = actualcard;
+    }
 
-	public Integer getTotalcard() {
-		return totalcard;
-	}
+    public Integer getTotalcard() {
+        return totalcard;
+    }
 
-	public void setTotalcard(Integer totalcard) {
-		this.totalcard = totalcard;
-	}
+    public void setTotalcard(Integer totalcard) {
+        this.totalcard = totalcard;
+    }
 
-	public Date getCreatetime() {
-		return createtime;
-	}
+    public Date getCreatetime() {
+        return createtime;
+    }
 
-	public void setCreatetime(Date createtime) {
-		this.createtime = createtime;
-	}
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
 
-	public Date getLastlogintime() {
-		return lastlogintime;
-	}
+    public Date getLastlogintime() {
+        return lastlogintime;
+    }
 
-	public void setLastlogintime(Date lastlogintime) {
-		this.lastlogintime = lastlogintime;
-	}
+    public void setLastlogintime(Date lastlogintime) {
+        this.lastlogintime = lastlogintime;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public void setPrizecount(int prizecount) {
-		this.prizecount = prizecount;
-	}
+    public void setPrizecount(int prizecount) {
+        this.prizecount = prizecount;
+    }
 
-	public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -109,7 +109,6 @@ public class Account {
      * This method sets the value of the database column account.id
      *
      * @param id the value for account.id
-     *
      * @mbggenerated
      */
     public void setId(Integer id) {
@@ -121,7 +120,6 @@ public class Account {
      * This method returns the value of the database column account.Uuid
      *
      * @return the value of account.Uuid
-     *
      * @mbggenerated
      */
     public Integer getUuid() {
@@ -133,7 +131,6 @@ public class Account {
      * This method sets the value of the database column account.Uuid
      *
      * @param uuid the value for account.Uuid
-     *
      * @mbggenerated
      */
     public void setUuid(Integer uuid) {
@@ -145,7 +142,6 @@ public class Account {
      * This method returns the value of the database column account.openid
      *
      * @return the value of account.openid
-     *
      * @mbggenerated
      */
     public String getOpenid() {
@@ -157,7 +153,6 @@ public class Account {
      * This method sets the value of the database column account.openid
      *
      * @param openid the value for account.openid
-     *
      * @mbggenerated
      */
     public void setOpenid(String openid) {
@@ -169,7 +164,6 @@ public class Account {
      * This method returns the value of the database column account.nickName
      *
      * @return the value of account.nickName
-     *
      * @mbggenerated
      */
     public String getNickname() {
@@ -181,7 +175,6 @@ public class Account {
      * This method sets the value of the database column account.nickName
      *
      * @param nickname the value for account.nickName
-     *
      * @mbggenerated
      */
     public void setNickname(String nickname) {
@@ -193,7 +186,6 @@ public class Account {
      * This method returns the value of the database column account.headIcon
      *
      * @return the value of account.headIcon
-     *
      * @mbggenerated
      */
     public String getHeadicon() {
@@ -205,7 +197,6 @@ public class Account {
      * This method sets the value of the database column account.headIcon
      *
      * @param headicon the value for account.headIcon
-     *
      * @mbggenerated
      */
     public void setHeadicon(String headicon) {
@@ -217,7 +208,6 @@ public class Account {
      * This method returns the value of the database column account.roomCard
      *
      * @return the value of account.roomCard
-     *
      * @mbggenerated
      */
     public Integer getRoomcard() {
@@ -229,7 +219,6 @@ public class Account {
      * This method sets the value of the database column account.roomCard
      *
      * @param roomcard the value for account.roomCard
-     *
      * @mbggenerated
      */
     public void setRoomcard(Integer roomcard) {
@@ -241,7 +230,6 @@ public class Account {
      * This method returns the value of the database column account.unionid
      *
      * @return the value of account.unionid
-     *
      * @mbggenerated
      */
     public String getUnionid() {
@@ -253,7 +241,6 @@ public class Account {
      * This method sets the value of the database column account.unionid
      *
      * @param unionid the value for account.unionid
-     *
      * @mbggenerated
      */
     public void setUnionid(String unionid) {
@@ -265,7 +252,6 @@ public class Account {
      * This method returns the value of the database column account.province
      *
      * @return the value of account.province
-     *
      * @mbggenerated
      */
     public String getProvince() {
@@ -277,7 +263,6 @@ public class Account {
      * This method sets the value of the database column account.province
      *
      * @param province the value for account.province
-     *
      * @mbggenerated
      */
     public void setProvince(String province) {
@@ -289,7 +274,6 @@ public class Account {
      * This method returns the value of the database column account.city
      *
      * @return the value of account.city
-     *
      * @mbggenerated
      */
     public String getCity() {
@@ -301,7 +285,6 @@ public class Account {
      * This method sets the value of the database column account.city
      *
      * @param city the value for account.city
-     *
      * @mbggenerated
      */
     public void setCity(String city) {
@@ -313,7 +296,6 @@ public class Account {
      * This method returns the value of the database column account.sex
      *
      * @return the value of account.sex
-     *
      * @mbggenerated
      */
     public Integer getSex() {
@@ -325,7 +307,6 @@ public class Account {
      * This method sets the value of the database column account.sex
      *
      * @param sex the value for account.sex
-     *
      * @mbggenerated
      */
     public void setSex(Integer sex) {
@@ -337,7 +318,6 @@ public class Account {
      * This method returns the value of the database column account.prizeCount
      *
      * @return the value of account.prizeCount
-     *
      * @mbggenerated
      */
     public Integer getPrizecount() {
@@ -349,11 +329,10 @@ public class Account {
      * This method sets the value of the database column account.prizeCount
      *
      * @param prizecount the value for account.prizeCount
-     *
      * @mbggenerated
      */
     public void setPrizecount(Integer prizecount) {
         this.prizecount = prizecount;
     }
-    
+
 }

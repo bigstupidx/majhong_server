@@ -21,19 +21,19 @@ public class MessageBoxMsgProcessor extends MsgProcessor implements INotAuthProc
     @Override
     public void process(GameSession gameSession, ClientRequest request) throws Exception {
         RoomLogic roomLogic = RoomManager.getInstance().getRoom(gameSession.getRole(Avatar.class).getRoomVO().getRoomId());
-        if(roomLogic != null){
+        if (roomLogic != null) {
             JSONObject json = JSONObject.fromObject(request.getString());
-            int uuid = (int)json.get("uuid");
+            int uuid = (int) json.get("uuid");
             int selfUuid = gameSession.getRole(Avatar.class).getUuId();
             List<Avatar> playerList = roomLogic.getPlayerList();
-            if(playerList != null){
-                for(int i=0;i<playerList.size();i++){
+            if (playerList != null) {
+                for (int i = 0; i < playerList.size(); i++) {
                     //if(playerList.get(i).getUuId() != uuid){
-                        playerList.get(i).getSession().sendMsg(new MessageBoxResponse(json));
+                    playerList.get(i).getSession().sendMsg(new MessageBoxResponse(json));
                     //}
                 }
             }
-        }else{
+        } else {
             gameSession.sendMsg(new ErrorResponse(ErrorCode.Error_000005));
         }
 

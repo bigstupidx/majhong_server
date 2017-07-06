@@ -10,23 +10,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
  * @author luck
- * 后台获取了游戏信息之后发送给前段
- *
+ *         后台获取了游戏信息之后发送给前段
  */
 public class IndexInfosResponse extends ServerResponse {
-	public IndexInfosResponse(int status, String content) {
+    public IndexInfosResponse(int status, String content) {
         super(status, ConnectAPI.HOST_INDEXINFOS_RESPONSE);
-        if(status >0){
+        if (status > 0) {
             try {
                 output.writeUTF(content);
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-           	 output.close();
-			}
+                output.close();
+            }
         }
-       // entireMsg();
+        // entireMsg();
     }
 }

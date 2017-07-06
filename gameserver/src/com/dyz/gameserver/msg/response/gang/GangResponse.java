@@ -10,21 +10,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
  * @author luck
- *
  */
 public class GangResponse extends ServerResponse {
     /**
-     *
      * @param status
      * @param fristPoint 第一张牌
-     * @param nextPoint 第二张牌
-     * @param type  明杠0 ， 暗杠 1
+     * @param nextPoint  第二张牌
+     * @param type       明杠0 ， 暗杠 1
      */
-	public GangResponse(int status, int fristPoint,int nextPoint,int type) {
+    public GangResponse(int status, int fristPoint, int nextPoint, int type) {
         super(status, ConnectAPI.GANGPAI_RESPONSE);
-        if(status >0){
+        if (status > 0) {
             GangBackVO gangBackVO = new GangBackVO();
             gangBackVO.setType(type);
             try {
@@ -32,8 +29,8 @@ public class GangResponse extends ServerResponse {
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-           	 output.close();
-			}
+                output.close();
+            }
         }
     }
 }

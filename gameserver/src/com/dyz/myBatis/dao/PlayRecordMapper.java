@@ -16,6 +16,6 @@ public interface PlayRecordMapper {
     int updateByPrimaryKeyWithBLOBs(PlayRecord record);
 
     int updateByPrimaryKey(PlayRecord record);
-    
+
     PlayRecord selectByStandingsDetailId(Integer id);
 }

@@ -57,46 +57,42 @@ public class RoomVO {
     /**
      * 开一个房间几局游戏完后，统计所有玩家的杠，胡次数
      * 第一个key：用户uuid
-     *
-     *  南京麻将
+     * <p/>
+     * 南京麻将
      */
-    private Map<String , Map<String,Integer>> endStatistics = new HashMap<String, Map<String,Integer>>();
+    private Map<String, Map<String, Integer>> endStatistics = new HashMap<String, Map<String, Integer>>();
 
-	public Map<String, Map<String, Integer>> updateEndStatistics(String uuid , String type ,int roundScore) {
-    		if(endStatistics.get(uuid) == null){
-    			Map<String,Integer > map = new HashMap<String , Integer>();
-        		map.put(type,roundScore);
-        		endStatistics.put(uuid, map);
-    		}
-    		else{
-    			if(endStatistics.get(uuid).get(type) != null){
-    				endStatistics.get(uuid).put(type, endStatistics.get(uuid).get(type)+roundScore);
-    			}
-    			else{
-    				endStatistics.get(uuid).put(type, roundScore);
-    			}
-    		}
+    public Map<String, Map<String, Integer>> updateEndStatistics(String uuid, String type, int roundScore) {
+        if (endStatistics.get(uuid) == null) {
+            Map<String, Integer> map = new HashMap<String, Integer>();
+            map.put(type, roundScore);
+            endStatistics.put(uuid, map);
+        } else {
+            if (endStatistics.get(uuid).get(type) != null) {
+                endStatistics.get(uuid).put(type, endStatistics.get(uuid).get(type) + roundScore);
+            } else {
+                endStatistics.get(uuid).put(type, roundScore);
+            }
+        }
 
-		return endStatistics;
-	}
+        return endStatistics;
+    }
 
 
     public Map<String, Map<String, Integer>> getEndStatistics() {
-		return endStatistics;
-	}
+        return endStatistics;
+    }
 
 
-
-
-	public int getRoomId() {
+    public int getRoomId() {
         return roomId;
     }
 
-	public void setEndStatistics(Map<String, Map<String, Integer>> endStatistics) {
-		this.endStatistics = endStatistics;
-	}
+    public void setEndStatistics(Map<String, Map<String, Integer>> endStatistics) {
+        this.endStatistics = endStatistics;
+    }
 
-	public void setRoomId(int roomId) {
+    public void setRoomId(int roomId) {
         this.roomId = roomId;
     }
 
@@ -109,15 +105,15 @@ public class RoomVO {
     }
 
     public int getCurrentRound() {
-		return currentRound;
-	}
+        return currentRound;
+    }
 
-	public void setCurrentRound(int currentRound) {
-		this.currentRound = currentRound;
-	}
+    public void setCurrentRound(int currentRound) {
+        this.currentRound = currentRound;
+    }
 
 
-	public int getRoomType() {
+    public int getRoomType() {
         return roomType;
     }
 
@@ -172,6 +168,7 @@ public class RoomVO {
     public void setXiaYu(int xiaYu) {
         this.xiaYu = xiaYu;
     }
+
     public boolean getAa() {
         return aa;
     }
@@ -191,9 +188,11 @@ public class RoomVO {
     public int getZashu() {
         return zashu;
     }
+
     public int getRealZashu() {
         return NanjingConfig.ZASHU_SET[zashu];
     }
+
     public void setZashu(int value) {
         this.zashu = value;
     }
@@ -201,9 +200,11 @@ public class RoomVO {
     public int getPaofen() {
         return paofen;
     }
+
     public int getRealPaofen() {
-	    return NanjingConfig.PAOFEN_SET[paofen];
+        return NanjingConfig.PAOFEN_SET[paofen];
     }
+
     public void setPaofen(int value) {
         this.paofen = value;
     }
@@ -211,9 +212,11 @@ public class RoomVO {
     public int getRoundtype() {
         return roundtype;
     }
+
     public void setRoundtype(int value) {
         this.roundtype = value;
     }
+
     public int getYuanzishu() {
         return yuanzishu;
     }
@@ -225,6 +228,7 @@ public class RoomVO {
     public int getYuanzijiesu() {
         return yuanzijiesu;
     }
+
     public void setYuanzijiesu(int value) {
         this.yuanzijiesu = value;
     }
@@ -232,6 +236,7 @@ public class RoomVO {
     public boolean getZhanzhuangbi() {
         return zhanzhuangbi;
     }
+
     public void setZhanzhuangbi(boolean value) {
         this.zhanzhuangbi = value;
     }
@@ -239,6 +244,7 @@ public class RoomVO {
     public boolean getGuozhuangbi() {
         return guozhuangbi;
     }
+
     public void setGuozhuangbi(boolean value) {
         this.guozhuangbi = value;
     }
@@ -246,6 +252,7 @@ public class RoomVO {
     public boolean getFengfa() {
         return fengfa;
     }
+
     public void setFengfa(boolean value) {
         this.fengfa = value;
     }
@@ -297,9 +304,9 @@ public class RoomVO {
         return 1;
     }
 
-    public RoomVO clone(){
-    	RoomVO result = new RoomVO();
-    	result.roomId = roomId;
+    public RoomVO clone() {
+        RoomVO result = new RoomVO();
+        result.roomId = roomId;
         result.roundNumber = roundNumber;
         result.currentRound = currentRound;
         result.hong = hong;
@@ -328,14 +335,14 @@ public class RoomVO {
     }
 
 
-	public int getId() {
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    
+
 }

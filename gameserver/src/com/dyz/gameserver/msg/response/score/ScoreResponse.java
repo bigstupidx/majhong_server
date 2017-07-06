@@ -9,20 +9,17 @@ import net.sf.json.JSONObject;
 import java.io.IOException;
 
 /**
- * 
  * @author luck
- *
  */
 public class ScoreResponse extends ServerResponse {
     /**
-     *
      * @param status
      */
-	public ScoreResponse(int status, int avatarIndex, int score) {
+    public ScoreResponse(int status, int avatarIndex, int score) {
         super(status, ConnectAPI.SCORE_RESPONSE);
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("avatarIndex",avatarIndex);
-        jsonObject.put("score",score);
+        jsonObject.put("avatarIndex", avatarIndex);
+        jsonObject.put("score", score);
         try {
             output.writeUTF(jsonObject.toString());
         } catch (IOException e) {

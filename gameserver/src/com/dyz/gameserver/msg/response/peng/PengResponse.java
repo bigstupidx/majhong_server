@@ -7,9 +7,7 @@ import net.sf.json.JSONObject;
 import java.io.IOException;
 
 /**
- * 
  * @author luck
- *
  */
 public class PengResponse extends ServerResponse {
     /**
@@ -18,12 +16,12 @@ public class PengResponse extends ServerResponse {
      * @param status
      * @param
      */
-    public PengResponse(int status, int cardPoint,int AvatarId) {
+    public PengResponse(int status, int cardPoint, int AvatarId) {
         super(status, ConnectAPI.PENGPAI_RESPONSE);
         try {
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("cardPoint",cardPoint);
-            jsonObject.put("avatarId",AvatarId);
+            jsonObject.put("cardPoint", cardPoint);
+            jsonObject.put("avatarId", AvatarId);
             output.writeUTF(jsonObject.toString());
         } catch (IOException e) {
             e.printStackTrace();

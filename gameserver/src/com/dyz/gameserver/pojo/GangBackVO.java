@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class GangBackVO {
     private List<Integer> cardList;
-    
+
     private int type;// 明杠 0    暗杠 1
 
     public List<Integer> getCardList() {
@@ -18,13 +18,13 @@ public class GangBackVO {
         this.cardList = cardList;
     }
 
-	public int getType() {
-		return type;
-	}
+    public int getType() {
+        return type;
+    }
 
-	public void setType(int type) {
-		this.type = type;
-	}
-    
-    
+    public void setType(int type) {
+        this.type = type;
+    }
+
+
 }

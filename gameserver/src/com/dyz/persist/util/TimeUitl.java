@@ -16,28 +16,29 @@ import java.util.TimerTask;
  */
 public class TimeUitl {
 
-    static Map<GameObj,Timer> gameObjMap = new HashMap<GameObj,Timer>();
+    static Map<GameObj, Timer> gameObjMap = new HashMap<GameObj, Timer>();
 
     /**
-     *  延迟销毁对象
+     * 延迟销毁对象
+     *
      * @param gobj
      * @param delayTime
      */
-    public static  void delayDestroy(GameObj gobj,int delayTime){
+    public static void delayDestroy(GameObj gobj, int delayTime) {
         final Timer timer = new Timer();
-        gameObjMap.put(gobj,timer);
+        gameObjMap.put(gobj, timer);
         //getGameObjMapSize();
-        TimerTask tt=new TimerTask() {
+        TimerTask tt = new TimerTask() {
             @Override
             public void run() {
                 gameObjMap.remove(gobj);
                 timer.cancel();
-                if(gobj instanceof Avatar){
-                    System.out.println("用户掉线超时，删除用户数据 UserId "+ ((Avatar) gobj).getUuId());
+                if (gobj instanceof Avatar) {
+                    System.out.println("用户掉线超时，删除用户数据 UserId " + ((Avatar) gobj).getUuId());
                     GameServerContext.remove_offLine_Character((Avatar) gobj);
-	                GameSessionManager.getInstance().removeGameSession((Avatar) gobj);   
-                    
-                }else{
+                    GameSessionManager.getInstance().removeGameSession((Avatar) gobj);
+
+                } else {
                     System.out.println("到点啦！移除 gameSession");
                 }
                 //gobj.destroyObj();
@@ -48,28 +49,30 @@ public class TimeUitl {
 
     /**
      * 停止并销毁计时器
+     *
      * @param obj
      */
-    public static void stopAndDestroyTimer(GameObj obj){
+    public static void stopAndDestroyTimer(GameObj obj) {
         Timer timer = getTimer(obj);
-        if(timer != null){
+        if (timer != null) {
             gameObjMap.remove(obj);
-           // getGameObjMapSize();
+            // getGameObjMapSize();
             timer.cancel();
             timer = null;
         }
     }
 
-    public static void getGameObjMapSize(){
-       //System.out.println("计时器 gameObjMap.size() = "+gameObjMap.size());
+    public static void getGameObjMapSize() {
+        //System.out.println("计时器 gameObjMap.size() = "+gameObjMap.size());
     }
 
     /**
      * 获取计时器
+     *
      * @param obj
      * @return
      */
-    private static Timer getTimer(GameObj obj){
+    private static Timer getTimer(GameObj obj) {
         return gameObjMap.get(obj);
     }
 }

@@ -11,8 +11,8 @@ import java.io.IOException;
  */
 public class GlobalUtil {
 
-    public static boolean checkIsLogin(GameSession session){
-        if(session.isLogin() == false){
+    public static boolean checkIsLogin(GameSession session) {
+        if (session.isLogin() == false) {
             System.out.println("账户未登录或已经掉线!");
             try {
                 session.sendMsg(new ErrorResponse(ErrorCode.Error_000002));
@@ -24,17 +24,17 @@ public class GlobalUtil {
         return true;
     }
 
-    public static int getRandomUUid(){
+    public static int getRandomUUid() {
         double d = Math.random();
         //System.out.println(d);
-        String subStr = String.valueOf(d).substring(7,13);
+        String subStr = String.valueOf(d).substring(7, 13);
         int result = Integer.parseInt(subStr);
         return result;
     }
 
     public static int[] CloneIntList(int[] List) {
         int[] result = new int[List.length];
-        for(int i=0;i<List.length;i++){
+        for (int i = 0; i < List.length; i++) {
             result[i] = List[i];
         }
         return result;

@@ -16,7 +16,7 @@ public class GaveUpMsgProcessor extends MsgProcessor implements
     @Override
     public void process(GameSession gameSession, ClientRequest request) throws Exception {
         RoomLogic roomLogic = RoomManager.getInstance().getRoom(gameSession.getRole(Avatar.class).getRoomVO().getRoomId());
-        if(roomLogic != null){
+        if (roomLogic != null) {
             roomLogic.gaveUpAction(gameSession.getRole(Avatar.class));
         }
     }

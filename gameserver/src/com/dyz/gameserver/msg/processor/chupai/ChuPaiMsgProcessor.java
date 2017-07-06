@@ -20,16 +20,16 @@ public class ChuPaiMsgProcessor extends MsgProcessor implements
     @Override
     public void process(GameSession gameSession, ClientRequest request) throws Exception {
         //*****
-        CardVO cardVO = JsonUtilTool.fromJson(request.getString(),CardVO.class);
+        CardVO cardVO = JsonUtilTool.fromJson(request.getString(), CardVO.class);
         RoomLogic roomLogic = RoomManager.getInstance().getRoom(gameSession.getRole(Avatar.class).getRoomVO().getRoomId());
-        if(roomLogic != null){
-            if(cardVO.getCardPoint() == -1){
+        if (roomLogic != null) {
+            if (cardVO.getCardPoint() == -1) {
                 gameSession.sendMsg(new ErrorResponse(ErrorCode.Error_000009));
-            }else{
-            	//出牌，发送消息在方法里面
-            	roomLogic.chuCard(gameSession.getRole(Avatar.class), cardVO.getCardPoint());
+            } else {
+                //出牌，发送消息在方法里面
+                roomLogic.chuCard(gameSession.getRole(Avatar.class), cardVO.getCardPoint());
             }
-        }else{
+        } else {
             gameSession.sendMsg(new ErrorResponse(ErrorCode.Error_000005));
         }
 

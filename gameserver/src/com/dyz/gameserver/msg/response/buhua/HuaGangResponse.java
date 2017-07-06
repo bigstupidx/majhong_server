@@ -9,21 +9,18 @@ import net.sf.json.JSONObject;
 import java.io.IOException;
 
 /**
- * 
  * @author luck
- *
  */
 public class HuaGangResponse extends ServerResponse {
     /**
-     *
      * @param status
      * @param cardPoint hua pai
      */
-	public HuaGangResponse(int status, int cardPoint, int avatarIndex) {
+    public HuaGangResponse(int status, int cardPoint, int avatarIndex) {
         super(status, ConnectAPI.HUAGANG_RESPONSE);
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("cardPoint",cardPoint);
-        jsonObject.put("avatarId",avatarIndex);
+        jsonObject.put("cardPoint", cardPoint);
+        jsonObject.put("avatarId", avatarIndex);
         try {
             output.writeUTF(jsonObject.toString());
         } catch (IOException e) {

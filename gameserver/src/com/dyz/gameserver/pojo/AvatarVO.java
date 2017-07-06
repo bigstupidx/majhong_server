@@ -33,12 +33,12 @@ public class AvatarVO {
      */
     private boolean isOnLine = false;
     private int scores = 1000;
-    private List<Integer>  chupais = new ArrayList<Integer>();
+    private List<Integer> chupais = new ArrayList<Integer>();
     private int commonCards;
     private int huType = 0;
     private int[][] paiArray;
-    private HuReturnObjectVO  huReturnObjectVO;
-    
+    private HuReturnObjectVO huReturnObjectVO;
+
     private String IP;
 
     private double longitude = 0;
@@ -69,18 +69,20 @@ public class AvatarVO {
     public String getAddress() {
         return address;
     }
-   public HuReturnObjectVO getHuReturnObjectVO() {
-		return huReturnObjectVO;
-	}
 
-	public void setHuReturnObjectVO(HuReturnObjectVO huReturnObjectVO) {
-		this.huReturnObjectVO = huReturnObjectVO;
-	}
-	public Account getAccount() {
+    public HuReturnObjectVO getHuReturnObjectVO() {
+        return huReturnObjectVO;
+    }
+
+    public void setHuReturnObjectVO(HuReturnObjectVO huReturnObjectVO) {
+        this.huReturnObjectVO = huReturnObjectVO;
+    }
+
+    public Account getAccount() {
         return account;
     }
 
-	public void setAccount(Account account) {
+    public void setAccount(Account account) {
         this.account = account;
     }
 
@@ -113,7 +115,7 @@ public class AvatarVO {
     }
 
     public int getMainCount() {
-       return mainCount;
+        return mainCount;
     }
 
     public boolean getIsOnLine() {
@@ -133,69 +135,73 @@ public class AvatarVO {
     }
 
     public void clearPaiArray() {
-       for (int i = 0; i < paiArray.length; i++) {
-           for (int j = 0; j < paiArray[i].length; j++) {
-               if (i < 2) paiArray[i][j] = 0;
-               else paiArray[i][j] = -1;
-           }
-       }
+        for (int i = 0; i < paiArray.length; i++) {
+            for (int j = 0; j < paiArray[i].length; j++) {
+                if (i < 2) paiArray[i][j] = 0;
+                else paiArray[i][j] = -1;
+            }
+        }
     }
 
-	public List<Integer> getChupais() {
-		return chupais;
-	}
-	/**
-	 * 出了的牌添加到数组中
-	 * @param chupai
-	 */
-	public void updateChupais(Integer chupai) {
-		chupais.add(chupai);
- 	}
-	public void removeLastChupais() {
-		int inde = chupais.size();
-		chupais.remove(inde-1);
- 	}
-	
-	public int getCommonCards() {
-		return commonCards;
-	}
+    public List<Integer> getChupais() {
+        return chupais;
+    }
 
-	public void setCommonCards(int commonCards) {
-		this.commonCards = commonCards;
-	}
+    /**
+     * 出了的牌添加到数组中
+     *
+     * @param chupai
+     */
+    public void updateChupais(Integer chupai) {
+        chupais.add(chupai);
+    }
 
-	public int getScores() {
-		return scores;
-	}
-	public int supdateScores(int score) {
-		this.scores = this.scores + score;
-		if (this.scores < 0) {
-		    int temp = this.scores;
-		    this.scores = 0;
-		    return temp;
+    public void removeLastChupais() {
+        int inde = chupais.size();
+        chupais.remove(inde - 1);
+    }
+
+    public int getCommonCards() {
+        return commonCards;
+    }
+
+    public void setCommonCards(int commonCards) {
+        this.commonCards = commonCards;
+    }
+
+    public int getScores() {
+        return scores;
+    }
+
+    public int supdateScores(int score) {
+        this.scores = this.scores + score;
+        if (this.scores < 0) {
+            int temp = this.scores;
+            this.scores = 0;
+            return temp;
         }
         return 0;
-	}
-
-	public void setScores(int socre) {
-	    this.scores = socre;
     }
 
-	public int getHuType() {
-		return huType;
-	}
+    public void setScores(int socre) {
+        this.scores = socre;
+    }
 
-	public void setHuType(int huType) {
-		this.huType = huType;
-	}
+    public int getHuType() {
+        return huType;
+    }
 
-	public String getIP() {
-		return IP;
-	}
+    public void setHuType(int huType) {
+        this.huType = huType;
+    }
 
-	public void setIP(String iP) {
-		IP = iP;
-	}
-	
-	
+    public String getIP() {
+        return IP;
+    }
+
+    public void setIP(String iP) {
+        IP = iP;
+    }
+
+
 }

@@ -15,9 +15,9 @@ public class ErrorResponse extends ServerResponse {
      * @param message
      */
     public ErrorResponse(String message) throws IOException {
-        super(1,ConnectAPI.ERROR_RESPONSE);
+        super(1, ConnectAPI.ERROR_RESPONSE);
         output.writeUTF(message);
-       	output.close();
-       // entireMsg();
+        output.close();
+        // entireMsg();
     }
 }

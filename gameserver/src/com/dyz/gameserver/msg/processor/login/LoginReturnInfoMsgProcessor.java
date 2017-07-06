@@ -13,27 +13,26 @@ import com.dyz.gameserver.msg.response.ErrorResponse;
 
 /**
  * 断线重连之后 打牌进行到了什么步骤（该谁出牌，打牌，杠牌/碰牌/胡牌）
- * @author luck
  *
+ * @author luck
  */
 public class LoginReturnInfoMsgProcessor extends MsgProcessor implements
-INotAuthProcessor {
+        INotAuthProcessor {
 
-	@Override
-	public void process(GameSession gameSession, ClientRequest request) throws Exception {
-		
-		RoomLogic roomLogic = RoomManager.getInstance().getRoom(gameSession.getRole(Avatar.class).getRoomVO().getRoomId());
-    	if(roomLogic != null){
-    		Avatar avatar = gameSession.getRole(Avatar.class);
-    		if(avatar != null){
-    				roomLogic.LoginReturnInfo(avatar);
-    			}
-    		else{
-    			System.out.println("账户未登录或已经掉线!");
-    		}
-        }else{
+    @Override
+    public void process(GameSession gameSession, ClientRequest request) throws Exception {
+
+        RoomLogic roomLogic = RoomManager.getInstance().getRoom(gameSession.getRole(Avatar.class).getRoomVO().getRoomId());
+        if (roomLogic != null) {
+            Avatar avatar = gameSession.getRole(Avatar.class);
+            if (avatar != null) {
+                roomLogic.LoginReturnInfo(avatar);
+            } else {
+                System.out.println("账户未登录或已经掉线!");
+            }
+        } else {
             gameSession.sendMsg(new ErrorResponse(ErrorCode.Error_000005));
         }
-	}
+    }
 
 }

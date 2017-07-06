@@ -15,7 +15,8 @@ import com.dyz.myBatis.model.AccountExample;
  */
 public class AccountDaoImp implements AccountMapper {
     private SqlSessionFactory sqlSessionFactory;
-    public AccountDaoImp(SqlSessionFactory sqlSessionFactory){
+
+    public AccountDaoImp(SqlSessionFactory sqlSessionFactory) {
         this.sqlSessionFactory = sqlSessionFactory;
     }
 
@@ -74,16 +75,16 @@ public class AccountDaoImp implements AccountMapper {
         } catch (Exception e) {
             e.printStackTrace();
             try {
-             	record.setNickname(filterNickName(record.getNickname()));
-             	flag = mapper.insert(record);
-             	sqlSession.commit();
- 			} catch (Exception e2) {
- 			    e.printStackTrace();
- 			    record.setNickname("???????");
- 			    flag = mapper.insert(record);
-             	sqlSession.commit();
- 			}
-        }finally {
+                record.setNickname(filterNickName(record.getNickname()));
+                flag = mapper.insert(record);
+                sqlSession.commit();
+            } catch (Exception e2) {
+                e.printStackTrace();
+                record.setNickname("???????");
+                flag = mapper.insert(record);
+                sqlSession.commit();
+            }
+        } finally {
             sqlSession.close();
         }
         return flag;
@@ -98,30 +99,30 @@ public class AccountDaoImp implements AccountMapper {
      */
     @Override
     public int insertSelective(Account record) {
-    	 int flag = 0;
-         SqlSession sqlSession = sqlSessionFactory.openSession();
-         AccountMapper mapper = null;
-         try {
-             mapper = sqlSession.getMapper(AccountMapper.class);
-             flag = mapper.insertSelective(record);
-             sqlSession.commit();
-         } catch (Exception e) {
-             e.printStackTrace();
-             //昵称出问题
-             try {
-             	record.setNickname(filterNickName(record.getNickname()));
-             	flag = mapper.insertSelective(record);
-             	sqlSession.commit();
- 			} catch (Exception e2) {
- 			    e.printStackTrace();
- 			    record.setNickname("???????");
- 			    flag = mapper.insertSelective(record);
-             	sqlSession.commit();
- 			}
-         }finally {
-             sqlSession.close();
-         }
-         return flag;
+        int flag = 0;
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        AccountMapper mapper = null;
+        try {
+            mapper = sqlSession.getMapper(AccountMapper.class);
+            flag = mapper.insertSelective(record);
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            //昵称出问题
+            try {
+                record.setNickname(filterNickName(record.getNickname()));
+                flag = mapper.insertSelective(record);
+                sqlSession.commit();
+            } catch (Exception e2) {
+                e.printStackTrace();
+                record.setNickname("???????");
+                flag = mapper.insertSelective(record);
+                sqlSession.commit();
+            }
+        } finally {
+            sqlSession.close();
+        }
+        return flag;
     }
 
     /**
@@ -141,7 +142,7 @@ public class AccountDaoImp implements AccountMapper {
             sqlSession.commit();
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             sqlSession.close();
         }
         return result;
@@ -156,17 +157,17 @@ public class AccountDaoImp implements AccountMapper {
      */
     @Override
     public Account selectByPrimaryKey(Integer id) {
-    	 Account result = null;
-         SqlSession sqlSession = sqlSessionFactory.openSession();
-         try {
-             AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
-             result = mapper.selectByPrimaryKey(id);
-             sqlSession.commit();
-         } catch (Exception e) {
-             e.printStackTrace();
-         }finally {
-             sqlSession.close();
-         }
+        Account result = null;
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        try {
+            AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
+            result = mapper.selectByPrimaryKey(id);
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
         return result;
     }
 
@@ -208,24 +209,24 @@ public class AccountDaoImp implements AccountMapper {
         int flag = 0;
         SqlSession sqlSession = sqlSessionFactory.openSession();
         AccountMapper mapper = null;
-        try{
+        try {
             mapper = sqlSession.getMapper(AccountMapper.class);
             flag = mapper.updateByPrimaryKeySelective(record);
             sqlSession.commit();
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             //昵称出问题
             try {
-            	record.setNickname(filterNickName(record.getNickname()));
-            	flag = mapper.updateByPrimaryKeySelective(record);
-            	sqlSession.commit();
-			} catch (Exception e2) {
-			    e.printStackTrace();
-			    record.setNickname("???????");
-			    flag = mapper.updateByPrimaryKeySelective(record);
-            	sqlSession.commit();
-			}
-        }finally {
+                record.setNickname(filterNickName(record.getNickname()));
+                flag = mapper.updateByPrimaryKeySelective(record);
+                sqlSession.commit();
+            } catch (Exception e2) {
+                e.printStackTrace();
+                record.setNickname("???????");
+                flag = mapper.updateByPrimaryKeySelective(record);
+                sqlSession.commit();
+            }
+        } finally {
             sqlSession.close();
         }
         return flag;
@@ -250,82 +251,81 @@ public class AccountDaoImp implements AccountMapper {
         } catch (Exception e) {
             e.printStackTrace();
             try {
-            	record.setNickname(filterNickName(record.getNickname()));
-            	flag = mapper.updateByPrimaryKey(record);
-            	sqlSession.commit();
-			} catch (Exception e2) {
-			    e.printStackTrace();
-			    record.setNickname("???????");
-			    flag = mapper.updateByPrimaryKey(record);
-            	sqlSession.commit();
-			}
-        }finally {
+                record.setNickname(filterNickName(record.getNickname()));
+                flag = mapper.updateByPrimaryKey(record);
+                sqlSession.commit();
+            } catch (Exception e2) {
+                e.printStackTrace();
+                record.setNickname("???????");
+                flag = mapper.updateByPrimaryKey(record);
+                sqlSession.commit();
+            }
+        } finally {
             sqlSession.close();
         }
         return flag;
     }
 
-	@Override
-	public int selectMaxId() {
-		 SqlSession sqlSession = sqlSessionFactory.openSession();
-		 AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
-		return mapper.selectMaxId();
-	}
+    @Override
+    public int selectMaxId() {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
+        return mapper.selectMaxId();
+    }
 
-	@Override
-	public List<Account> selectIsGames() {
-		 SqlSession sqlSession = sqlSessionFactory.openSession();
-		 AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
-		return mapper.selectIsGames();
-	}
+    @Override
+    public List<Account> selectIsGames() {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
+        return mapper.selectIsGames();
+    }
 
-	@Override
-	public List<Account> selectAllAccounts() {
-		 SqlSession sqlSession = sqlSessionFactory.openSession();
-		 AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
-		return mapper.selectAllAccounts();
-	}
+    @Override
+    public List<Account> selectAllAccounts() {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
+        return mapper.selectAllAccounts();
+    }
 
-	@Override
-	public int updatePrizeCount(Integer prizecount) {
-		 int flag = 0;
-	        SqlSession sqlSession = sqlSessionFactory.openSession();
-	        try {
-	            AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
-	            flag = mapper.updatePrizeCount(prizecount);
-	            sqlSession.commit();
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }finally {
-	            sqlSession.close();
-	        }
-		return flag;
-	}
+    @Override
+    public int updatePrizeCount(Integer prizecount) {
+        int flag = 0;
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        try {
+            AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
+            flag = mapper.updatePrizeCount(prizecount);
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return flag;
+    }
 
-	@Override
-	public Account selectByUuid(Integer id) {
-		 Account result = null;
-         SqlSession sqlSession = sqlSessionFactory.openSession();
-         try {
-             AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
-             result = mapper.selectByUuid(id);
-             sqlSession.commit();
-         } catch (Exception e) {
-             e.printStackTrace();
-         }finally {
-             sqlSession.close();
-         }
+    @Override
+    public Account selectByUuid(Integer id) {
+        Account result = null;
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        try {
+            AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
+            result = mapper.selectByUuid(id);
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
         return result;
-	}
+    }
 
-	/**
-	 * 
-	 * @param nickname
-	 * @return String
-	 */
-	public String filterNickName(String nickname){
-		String reg = "[^\u4e00-\u9fa5]";
-		nickname = nickname.replaceAll(reg, "?");
-		return nickname;
-	}
+    /**
+     * @param nickname
+     * @return String
+     */
+    public String filterNickName(String nickname) {
+        String reg = "[^\u4e00-\u9fa5]";
+        nickname = nickname.replaceAll(reg, "?");
+        return nickname;
+    }
 }

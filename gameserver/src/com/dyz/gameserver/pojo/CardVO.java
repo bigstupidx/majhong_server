@@ -5,40 +5,39 @@ package com.dyz.gameserver.pojo;
  */
 public class CardVO {
     private int cardPoint;
-    
+
     private int onePoint;//两个吃牌之一
-    
+
     private int twoPoint;//两个吃牌之二
-    
+
     private String type;//代表胡的类型（qiangHu）
 
-    
-    
-  public int getOnePoint() {
-		return onePoint;
-	}
 
-	public void setOnePoint(int onePoint) {
-		this.onePoint = onePoint;
-	}
+    public int getOnePoint() {
+        return onePoint;
+    }
 
-	public int getTwoPoint() {
-		return twoPoint;
-	}
+    public void setOnePoint(int onePoint) {
+        this.onePoint = onePoint;
+    }
 
-	public void setTwoPoint(int twoPoint) {
-		this.twoPoint = twoPoint;
-	}
+    public int getTwoPoint() {
+        return twoPoint;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public void setTwoPoint(int twoPoint) {
+        this.twoPoint = twoPoint;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public int getCardPoint() {
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getCardPoint() {
         return cardPoint;
     }
 

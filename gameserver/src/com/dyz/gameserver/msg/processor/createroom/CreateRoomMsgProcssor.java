@@ -20,7 +20,7 @@ import com.dyz.persist.util.JsonUtilTool;
 public class CreateRoomMsgProcssor extends MsgProcessor implements
         INotAuthProcessor {
 
-    public CreateRoomMsgProcssor(){
+    public CreateRoomMsgProcssor() {
 
     }
 
@@ -28,20 +28,20 @@ public class CreateRoomMsgProcssor extends MsgProcessor implements
     public void process(GameSession gameSession, ClientRequest request) throws Exception {
         String message = request.getString();
         RoomVO roomVO = (RoomVO) JsonUtilTool.fromJson(message, RoomVO.class);
-        if(gameSession.isLogin()) {
+        if (gameSession.isLogin()) {
             Avatar avatar = gameSession.getRole(Avatar.class);
             AvatarVO avatarVo = avatar.avatarVO;
             int roomcard = roomVO.getRoomCardCount();
             // check room right
 
-            if(avatarVo.getAccount().getRoomcard() >= roomcard) {
-                if(avatarVo.getRoomId() == 0) {
-                    RoomManager.getInstance().createRoom(avatar,roomVO);
-                    gameSession.sendMsg(new CreateRoomResponse(1,roomVO.getRoomId()+""));
-                }else{
-                    gameSession.sendMsg(new CreateRoomResponse(1,avatarVo.getRoomId()+""));
+            if (avatarVo.getAccount().getRoomcard() >= roomcard) {
+                if (avatarVo.getRoomId() == 0) {
+                    RoomManager.getInstance().createRoom(avatar, roomVO);
+                    gameSession.sendMsg(new CreateRoomResponse(1, roomVO.getRoomId() + ""));
+                } else {
+                    gameSession.sendMsg(new CreateRoomResponse(1, avatarVo.getRoomId() + ""));
                 }
-            }else{
+            } else {
                 gameSession.sendMsg(new ErrorResponse(ErrorCode.Error_000014));
             }
         }

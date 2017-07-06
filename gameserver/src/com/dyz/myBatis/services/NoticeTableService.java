@@ -16,50 +16,49 @@ public class NoticeTableService {
 
     private static NoticeTableService noticeTableService = new NoticeTableService();
 
-    public static NoticeTableService getInstance(){
+    public static NoticeTableService getInstance() {
         return noticeTableService;
     }
 
-    public void initSetSession(SqlSessionFactory sqlSessionFactory){
+    public void initSetSession(SqlSessionFactory sqlSessionFactory) {
         noticeTableMapper = new NoitceTableDaoImp(sqlSessionFactory);
     }
 
     /**
-     *
      * @param account
      * @throws SQLException
      */
     public void updateAccount(NoticeTable noticeTable) {
         try {
             int index = noticeTableMapper.updateByPrimaryKey(noticeTable);
-            System.out.println("===index====> "+index);
-        }catch (Exception e){
+            System.out.println("===index====> " + index);
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
+
     /**
-     *
      * @param account
      * @throws SQLException
      */
-    public void updateByPrimaryKeySelective(NoticeTable noticeTable){
-        try{
+    public void updateByPrimaryKeySelective(NoticeTable noticeTable) {
+        try {
             int index = noticeTableMapper.updateByPrimaryKeySelective(noticeTable);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-    
+
     /**
      * 获取最近一次公告
      */
-    public NoticeTable selectRecentlyObject(){
-    	NoticeTable noticeTable = null;
-    	 try{
-    		 noticeTable = noticeTableMapper.selectRecentlyObject();
-         }catch (Exception e){
-             System.out.println(e.getMessage());
-         }
-    	 return noticeTable;
+    public NoticeTable selectRecentlyObject() {
+        NoticeTable noticeTable = null;
+        try {
+            noticeTable = noticeTableMapper.selectRecentlyObject();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return noticeTable;
     }
 }

@@ -29,22 +29,22 @@ import com.dyz.persist.util.StringUtil;
 
 /**
  * 通过roomid返回战绩
- * @author luck
  *
+ * @author luck
  */
 public class StandingsMsgProcessorSearch extends MsgProcessor implements
-INotAuthProcessor {
+        INotAuthProcessor {
 
-	@Override
-	public void process(GameSession gameSession, ClientRequest request) throws Exception {
-	       if(GlobalUtil.checkIsLogin(gameSession)) {
-	    	   String roomId = request.getString();
-	            Avatar avatar = gameSession.getRole(Avatar.class);
-	            if (avatar == null) {
-	                //system.out.println("用户是空的");
-	            }else{
-	            	int id = 0;
-	            	JSONArray  array;
+    @Override
+    public void process(GameSession gameSession, ClientRequest request) throws Exception {
+        if (GlobalUtil.checkIsLogin(gameSession)) {
+            String roomId = request.getString();
+            Avatar avatar = gameSession.getRole(Avatar.class);
+            if (avatar == null) {
+                //system.out.println("用户是空的");
+            } else {
+                int id = 0;
+                JSONArray array;
 //	            	if(roomId.equals("0")){
 //	            		array = new JSONArray();
 //	            		//房间战绩
@@ -61,21 +61,22 @@ INotAuthProcessor {
 //	            		gameSession.sendMsg(new StandingsResponse(1, array.toJSONString()));
 //	            	}
 //	            	else{
-	            		//每一局战绩(id为standingsId)
-	            		Standings standings;
-	            		array = new JSONArray();
-	            		JSONObject json = new JSONObject();;
-	            		id = RoomInfoService.getInstance().selectRoomId(Integer.parseInt(roomId)).getId();
-	            		standings = StandingsService.getInstance().selectByRoomId(id);
-	            		json.put("data", standings);
-	            		json.put("roomId",Integer.parseInt(roomId));
-	            		array.add(json);
-	            		gameSession.sendMsg(new StandingsDetailResponseSearch(1, array.toJSONString()));
+                //每一局战绩(id为standingsId)
+                Standings standings;
+                array = new JSONArray();
+                JSONObject json = new JSONObject();
+                ;
+                id = RoomInfoService.getInstance().selectRoomId(Integer.parseInt(roomId)).getId();
+                standings = StandingsService.getInstance().selectByRoomId(id);
+                json.put("data", standings);
+                json.put("roomId", Integer.parseInt(roomId));
+                array.add(json);
+                gameSession.sendMsg(new StandingsDetailResponseSearch(1, array.toJSONString()));
 //	            	}
-	            }
-	        }else{
-	            //system.out.println("该用户还没有登录");
-	            gameSession.destroyObj();
-	        }
-	}
+            }
+        } else {
+            //system.out.println("该用户还没有登录");
+            gameSession.destroyObj();
+        }
+    }
 }

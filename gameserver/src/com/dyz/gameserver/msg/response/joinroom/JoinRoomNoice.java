@@ -19,15 +19,15 @@ public class JoinRoomNoice extends ServerResponse {
      */
     public JoinRoomNoice(int status, AvatarVO avatarVO) {
         super(status, ConnectAPI.JOIN_ROOM_NOICE);
-        if(status > 0){
+        if (status > 0) {
             try {
                 output.writeUTF(JsonUtilTool.toJson(avatarVO));
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-           	 output.close();
-			}
+                output.close();
+            }
         }
-       // entireMsg();
+        // entireMsg();
     }
 }

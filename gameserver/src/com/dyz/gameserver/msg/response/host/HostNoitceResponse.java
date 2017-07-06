@@ -10,24 +10,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
  * @author luck
- * 后台更新公告后发送给前段
- *
+ *         后台更新公告后发送给前段
  */
 public class HostNoitceResponse extends ServerResponse {
-	public HostNoitceResponse(int status, String noitce) {
+    public HostNoitceResponse(int status, String noitce) {
         super(status, ConnectAPI.HOST_SEND_RESPONSE);
-        if(status >0){
+        if (status > 0) {
             try {
-            	
+
                 output.writeUTF(noitce);
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-           	 output.close();
-			}
+                output.close();
+            }
         }
-       // entireMsg();
+        // entireMsg();
     }
 }

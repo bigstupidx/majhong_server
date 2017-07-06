@@ -16,6 +16,6 @@ public interface StandingsAccountRelationMapper {
     int updateByPrimaryKeySelective(StandingsAccountRelation record);
 
     int updateByPrimaryKey(StandingsAccountRelation record);
-    
+
     List<Integer> selectNearestStandingsIdByAccountId(Integer accountId);
 }

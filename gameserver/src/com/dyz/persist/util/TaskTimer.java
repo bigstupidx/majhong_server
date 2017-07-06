@@ -21,6 +21,7 @@ import com.dyz.gameserver.sprite.tool.AsyncTaskQueue;
 public class TaskTimer {
     static int count = 0;
     AsyncTaskQueue asyncTaskQueue = new AsyncTaskQueue();
+
     public static void showTimer() {
         TimerTask task = new TimerTask() {
             @Override
@@ -28,10 +29,10 @@ public class TaskTimer {
                 ++count;
                 System.out.println("时间=" + new Date() + " 执行了" + count + "次"); // 1次
                 Map<String, GameSession> gamessions = GameSessionManager.getInstance().sessionMap;
-                if(!gamessions.isEmpty()){
-                	for (Entry<String, GameSession> set :gamessions.entrySet()) {
-                		set.getValue().getRole(Avatar.class).avatarVO.getAccount().setIsGame("0");
-					}
+                if (!gamessions.isEmpty()) {
+                    for (Entry<String, GameSession> set : gamessions.entrySet()) {
+                        set.getValue().getRole(Avatar.class).avatarVO.getAccount().setIsGame("0");
+                    }
                 }
             }
         };
@@ -46,27 +47,26 @@ public class TaskTimer {
         Date date = calendar.getTime();
         Timer timer = new Timer();
         System.out.println(date);
-        timer.schedule(task, date,24*60*60*1000);
+        timer.schedule(task, date, 24 * 60 * 60 * 1000);
     }
 
-    public static void headBag(){
+    public static void headBag() {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
                 List<GameSession> gameSessionList = GameSessionManager.getInstance().getAllSession();
-                if(gameSessionList != null){
-                    for(int i=0;i<gameSessionList.size();i++){
+                if (gameSessionList != null) {
+                    for (int i = 0; i < gameSessionList.size(); i++) {
                         gameSessionList.get(i).addTime(1);
-                        if(gameSessionList.get(i).getTime() > 15){
+                        if (gameSessionList.get(i).getTime() > 15) {
                             gameSessionList.get(i).destroyObj();
-                            gameSessionList.get(i).sendMsg(new HeadResponse(1,"1"));
-                        }
-                        else{
-                        	try {
-                        		gameSessionList.get(i).sendMsg(new HeadResponse(1,"0"));
-                        	}catch (Exception e){
-                        		System.out.println(e.getMessage());
-                        	}
+                            gameSessionList.get(i).sendMsg(new HeadResponse(1, "1"));
+                        } else {
+                            try {
+                                gameSessionList.get(i).sendMsg(new HeadResponse(1, "0"));
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
                         }
                     }
                 }
@@ -83,6 +83,6 @@ public class TaskTimer {
         Timer timer = new Timer();
         System.out.println(date);
         //20秒一次心跳包
-        timer.schedule(task, date,20000);
+        timer.schedule(task, date, 20000);
     }
 }

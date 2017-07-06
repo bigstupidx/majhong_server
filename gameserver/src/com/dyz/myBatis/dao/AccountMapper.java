@@ -2,7 +2,9 @@ package com.dyz.myBatis.dao;
 
 import com.dyz.myBatis.model.Account;
 import com.dyz.myBatis.model.AccountExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface AccountMapper {
@@ -61,8 +63,8 @@ public interface AccountMapper {
      * @mbggenerated
      */
     Account selectByPrimaryKey(Integer id);
-    
-    
+
+
     Account selectByUuid(Integer id);
 
     /**
@@ -96,20 +98,26 @@ public interface AccountMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Account record);
+
     /**
      * 获取最大的id值
+     *
      * @return int
      */
     int selectMaxId();
+
     /**
      * 获取所有前一天玩过游戏的玩家
      */
     List<Account> selectIsGames();
+
     /**
      * 获取所有玩家
+     *
      * @return
      */
     List<Account> selectAllAccounts();
+
     //修改抽奖次数
     int updatePrizeCount(Integer prizecount);
 }

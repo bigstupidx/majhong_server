@@ -19,17 +19,17 @@ public class OtherPickCardResponse extends ServerResponse {
     public OtherPickCardResponse(int status, int avatarIndex) {
         super(status, ConnectAPI.OTHER_PICKCARD_RESPONSE);
         JSONObject json = new JSONObject();
-        json.put("avatarIndex",avatarIndex);
-        if(status >0){
+        json.put("avatarIndex", avatarIndex);
+        if (status > 0) {
             try {
-            	//System.out.println("发送摸牌信息给其他玩家-----摸牌人索引："+avatarIndex);
+                //System.out.println("发送摸牌信息给其他玩家-----摸牌人索引："+avatarIndex);
                 output.writeUTF(json.toString());
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-           	 output.close();
-			}
+                output.close();
+            }
         }
-       // entireMsg();
+        // entireMsg();
     }
 }

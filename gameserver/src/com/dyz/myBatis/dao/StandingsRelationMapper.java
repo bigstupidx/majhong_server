@@ -16,6 +16,6 @@ public interface StandingsRelationMapper {
     int updateByPrimaryKeySelective(StandingsRelation record);
 
     int updateByPrimaryKey(StandingsRelation record);
-    
+
     List<Integer> selectDetailIdsByStandingsId(Integer standingsId);
 }

@@ -9,20 +9,19 @@ import com.dyz.persist.util.JsonUtilTool;
 
 public class OtherBackLoginResonse extends ServerResponse {
 
-	public OtherBackLoginResonse(int status, String uuid) {
-		super(status,ConnectAPI.OTHER_BACK_LOGIN_RESPONSE);
-		try {
-			if(status>0){
-					output.writeUTF(uuid);
-			}
-			else{
-				//output.writeUTF(roomVO.toString());
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-       	 output.close();
-		}
-	}
+    public OtherBackLoginResonse(int status, String uuid) {
+        super(status, ConnectAPI.OTHER_BACK_LOGIN_RESPONSE);
+        try {
+            if (status > 0) {
+                output.writeUTF(uuid);
+            } else {
+                //output.writeUTF(roomVO.toString());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            output.close();
+        }
+    }
 
 }

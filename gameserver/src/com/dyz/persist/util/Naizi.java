@@ -8,88 +8,87 @@ import java.util.*;
  * Created by kevin on 2016/6/29.
  */
 public class Naizi {
-    private static HashMap<Integer,List<CheckObjectVO>> shengCard = new HashMap<>();
-    public static  boolean testHuiPai(int [][] paiList ){
-        int[] pai =GlobalUtil.CloneIntList(paiList[0]);
-        for(int i=0;i<paiList[0].length;i++){
-            if(paiList[1][i] == 1 && pai[i] >= 3) {
+    private static HashMap<Integer, List<CheckObjectVO>> shengCard = new HashMap<>();
+
+    public static boolean testHuiPai(int[][] paiList) {
+        int[] pai = GlobalUtil.CloneIntList(paiList[0]);
+        for (int i = 0; i < paiList[0].length; i++) {
+            if (paiList[1][i] == 1 && pai[i] >= 3) {
                 pai[i] -= 3;
-            }else if(paiList[1][i] == 2 && pai[i] == 4){
-                pai[i]  -= 4;
+            } else if (paiList[1][i] == 2 && pai[i] == 4) {
+                pai[i] -= 4;
             }
         }
-       return getNeedHunNum(pai);
+        return getNeedHunNum(pai);
     }
 
     /**
      * 得到胡牌需要的赖子数
      * type 将在哪里
+     *
      * @return
      */
-    private static boolean getNeedHunNum(int[] paiList){
-    	int zhong = paiList[31];
+    private static boolean getNeedHunNum(int[] paiList) {
+        int zhong = paiList[31];
         int[] wan_arr = new int[9];
         int[] tiao_arr = new int[9];
         int[] tong_arr = new int[9];
         int needNum = 0;
         int index = 0;
-        for(int i=0;i<27;i++){
-            if(i<9){
+        for (int i = 0; i < 27; i++) {
+            if (i < 9) {
                 wan_arr[index] = paiList[i];
                 index++;
             }
-            if(i>=9 && i<18){
-                if(i == 9){
+            if (i >= 9 && i < 18) {
+                if (i == 9) {
                     index = 0;
                 }
                 tiao_arr[index] = paiList[i];
                 index++;
             }
-            if(i>=18){
-                if(i == 18){
+            if (i >= 18) {
+                if (i == 18) {
                     index = 0;
                 }
                 tong_arr[index] = paiList[i];
                 index++;
             }
         }
-        needNum = getNumWithJiang(wan_arr.clone())+ getNorNumber(tiao_arr.clone()) + getNorNumber(tong_arr.clone());
-        if(needNum <= zhong){
-        	return true;
-        }
-        else {
-        	needNum = getNorNumber(wan_arr.clone()) +getNumWithJiang(tiao_arr.clone()) + getNorNumber(tong_arr.clone());
-        	if(needNum <= zhong){
-        		return true;
-        	}
-        	else{
-        		needNum = getNorNumber(wan_arr.clone()) + getNorNumber(tiao_arr.clone())+getNumWithJiang(tong_arr.clone()) ;
-        		if(needNum <= zhong){
-        			return true;
-        		}
-        		else{
-        			return false;
-        		}
-        	}
+        needNum = getNumWithJiang(wan_arr.clone()) + getNorNumber(tiao_arr.clone()) + getNorNumber(tong_arr.clone());
+        if (needNum <= zhong) {
+            return true;
+        } else {
+            needNum = getNorNumber(wan_arr.clone()) + getNumWithJiang(tiao_arr.clone()) + getNorNumber(tong_arr.clone());
+            if (needNum <= zhong) {
+                return true;
+            } else {
+                needNum = getNorNumber(wan_arr.clone()) + getNorNumber(tiao_arr.clone()) + getNumWithJiang(tong_arr.clone());
+                if (needNum <= zhong) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         }
     }
 
     static int Jiang = 0;
 
-    private static int  getNumWithJiang(int[] temp_arr){
+    private static int getNumWithJiang(int[] temp_arr) {
         int result = 999999;
         Jiang = 0;
         shengCard.clear();
-        if(checkCanbeGroup(temp_arr.clone())){
-                result = 0;
-        }else{
-            Set<Integer> ints =  shengCard.keySet();
+        if (checkCanbeGroup(temp_arr.clone())) {
+            result = 0;
+        } else {
+            Set<Integer> ints = shengCard.keySet();
             ints.size();
-            if(ints.iterator().hasNext()){
+            if (ints.iterator().hasNext()) {
                 int key = ints.iterator().next();
                 List<CheckObjectVO> objectVOList = shengCard.get(key);
                 objectVOList = deleteSameItemForList(objectVOList);
-                for(int k = 0;k<objectVOList.size();k++) {
+                for (int k = 0; k < objectVOList.size(); k++) {
                     CheckObjectVO objectVO = objectVOList.get(k);
                     if (objectVO.isJiang == 0) {
                         for (int i = 0; i < 9; i++) {
@@ -111,43 +110,43 @@ public class Naizi {
         }
 
         //System.out.println("getNumWithJiang ===>  "+result+"  ==>> ");
-       // for(int a = 0;a<temp_arr.length;a++){
-            //system.out.print(temp_arr[a]+",");
-       // }
-       // System.out.println();
-        return  result;
+        // for(int a = 0;a<temp_arr.length;a++){
+        //system.out.print(temp_arr[a]+",");
+        // }
+        // System.out.println();
+        return result;
 
     }
+
     private static boolean isjiang;
-    private static int getJiangNumber(int[] temp_arr,int index){
+
+    private static int getJiangNumber(int[] temp_arr, int index) {
         int result = 0;
-        if(temp_arr[index] >= 2){
+        if (temp_arr[index] >= 2) {
             temp_arr[index] -= 2;
-        }else if(temp_arr[index] == 1){
+        } else if (temp_arr[index] == 1) {
             temp_arr[index] = 0;
             result++;
         }
-        for(int i=0;i<9;i++){
-            if(temp_arr[i]>0){
-                if(i<7){
-                    if(temp_arr[i+1] == 0 && temp_arr[i+2] == 0){
-                        result += 3-temp_arr[i];
+        for (int i = 0; i < 9; i++) {
+            if (temp_arr[i] > 0) {
+                if (i < 7) {
+                    if (temp_arr[i + 1] == 0 && temp_arr[i + 2] == 0) {
+                        result += 3 - temp_arr[i];
                         temp_arr[i] = 0;
-                    }
-                    else if(temp_arr[i+1] > 0 && temp_arr[i+2] == 0){
+                    } else if (temp_arr[i + 1] > 0 && temp_arr[i + 2] == 0) {
                         temp_arr[i]--;
-                        temp_arr[i+1]--;
+                        temp_arr[i + 1]--;
+                        result++;
+                        i--;
+                    } else if (temp_arr[i + 1] == 0 && temp_arr[i + 2] > 0) {
+                        temp_arr[i]--;
+                        temp_arr[i + 2]--;
                         result++;
                         i--;
                     }
-                    else if(temp_arr[i+1] == 0 && temp_arr[i+2] > 0){
-                        temp_arr[i]--;
-                        temp_arr[i+2]--;
-                        result++;
-                        i--;
-                    }
-                }else{
-                    if(i == 7) {
+                } else {
+                    if (i == 7) {
                         if (temp_arr[i + 1] == 0) {
                             result += 3 - temp_arr[i];
                             temp_arr[i] = 0;
@@ -157,7 +156,7 @@ public class Naizi {
                             temp_arr[i + 1]--;
                             i--;
                         }
-                    }else{
+                    } else {
                         result += 3 - temp_arr[i];
                         temp_arr[i] = 0;
                     }
@@ -167,15 +166,15 @@ public class Naizi {
         return result;
     }
 
-    private static int getNorNumber(int[] temp_arr){
+    private static int getNorNumber(int[] temp_arr) {
         int result = 99999;
         shengCard.clear();
-        if(checkNormalGroup(temp_arr.clone())){
+        if (checkNormalGroup(temp_arr.clone())) {
             result = 0;
-        }else{
-            Set<Integer> ints =  shengCard.keySet();
+        } else {
+            Set<Integer> ints = shengCard.keySet();
             ints.size();
-            if(ints.iterator().hasNext()) {
+            if (ints.iterator().hasNext()) {
                 int key = ints.iterator().next();
                 List<CheckObjectVO> objectVOList = shengCard.get(key);
                 objectVOList = deleteSameItemForList(objectVOList);
@@ -192,27 +191,27 @@ public class Naizi {
         return result;
     }
 
-    private static boolean checkCanbeGroup(int[] temp_arr){
+    private static boolean checkCanbeGroup(int[] temp_arr) {
         int resultNum = Remain(temp_arr);
         if (resultNum == 0) {
             return true;           //   递归退出条件：如果没有剩牌，则胡牌返回。
-        }else{
+        } else {
             CheckObjectVO objectVO = new CheckObjectVO();
             objectVO.isJiang = Jiang;
             objectVO.paiArray = temp_arr.clone();
             List<CheckObjectVO> tempList = shengCard.get(resultNum);
-            if(tempList == null){
+            if (tempList == null) {
                 tempList = new ArrayList<>();
                 tempList.add(objectVO);
-                shengCard.put(resultNum,tempList);
-            }else{
+                shengCard.put(resultNum, tempList);
+            } else {
                 tempList.add(objectVO);
             }
         }
-        for (int i = 0;  i < temp_arr.length; i++) {//   找到有牌的地方，i就是当前牌,   PAI[i]是个数
+        for (int i = 0; i < temp_arr.length; i++) {//   找到有牌的地方，i就是当前牌,   PAI[i]是个数
             //   跟踪信息
             //   4张组合(杠子)
-            if(temp_arr[i] != 0){
+            if (temp_arr[i] != 0) {
                 if (temp_arr[i] == 4)                               //   如果当前牌数等于4张
                 {
                     temp_arr[i] = 0;                                     //   除开全部4张牌
@@ -231,7 +230,7 @@ public class Naizi {
                     temp_arr[i] += 3;                                   //   取消3张组合
                 }
                 //   2张组合(将牌)
-                if (Jiang ==0 && temp_arr[i] >= 2)           //   如果之前没有将牌，且当前牌不少于2张
+                if (Jiang == 0 && temp_arr[i] >= 2)           //   如果之前没有将牌，且当前牌不少于2张
                 {
                     Jiang = 1;                                       //   设置将牌标志
                     temp_arr[i] -= 2;                                   //   减去2张牌
@@ -239,12 +238,12 @@ public class Naizi {
                     temp_arr[i] += 2;                                   //   取消2张组合
                     Jiang = 0;                                       //   清除将牌标志
                 }
-                if   ( i> 27){
-                    return   false;               //   “东南西北中发白”没有顺牌组合，不胡
+                if (i > 27) {
+                    return false;               //   “东南西北中发白”没有顺牌组合，不胡
                 }
                 //   顺牌组合，注意是从前往后组合！
                 //   排除数值为8和9的牌
-                if (i<7 && temp_arr[i+1]!=0 && temp_arr[i+2]!=0)             //   如果后面有连续两张牌
+                if (i < 7 && temp_arr[i + 1] != 0 && temp_arr[i + 2] != 0)             //   如果后面有连续两张牌
                 {
                     temp_arr[i]--;
                     temp_arr[i + 1]--;
@@ -267,27 +266,27 @@ public class Naizi {
         return false;
     }
 
-    private static boolean checkNormalGroup(int[] temp_arr){
+    private static boolean checkNormalGroup(int[] temp_arr) {
         int resultNum = Remain(temp_arr);
         if (resultNum == 0) {
             return true;           //   递归退出条件：如果没有剩牌，则胡牌返回。
-        }else{
+        } else {
             CheckObjectVO objectVO = new CheckObjectVO();
             objectVO.isJiang = Jiang;
             objectVO.paiArray = temp_arr.clone();
             List<CheckObjectVO> tempList = shengCard.get(resultNum);
-            if(tempList == null){
+            if (tempList == null) {
                 tempList = new ArrayList<>();
                 tempList.add(objectVO);
-                shengCard.put(resultNum,tempList);
-            }else{
+                shengCard.put(resultNum, tempList);
+            } else {
                 tempList.add(objectVO);
             }
         }
-        for (int i = 0;  i < temp_arr.length; i++) {//   找到有牌的地方，i就是当前牌,   PAI[i]是个数
+        for (int i = 0; i < temp_arr.length; i++) {//   找到有牌的地方，i就是当前牌,   PAI[i]是个数
             //   跟踪信息
             //   4张组合(杠子)
-            if(temp_arr[i] != 0){
+            if (temp_arr[i] != 0) {
                 if (temp_arr[i] == 4)                               //   如果当前牌数等于4张
                 {
                     temp_arr[i] = 0;                                     //   除开全部4张牌
@@ -305,12 +304,12 @@ public class Naizi {
                     }
                     temp_arr[i] += 3;                                   //   取消3张组合
                 }
-                if   ( i> 27){
-                    return   false;               //   “东南西北中发白”没有顺牌组合，不胡
+                if (i > 27) {
+                    return false;               //   “东南西北中发白”没有顺牌组合，不胡
                 }
                 //   顺牌组合，注意是从前往后组合！
                 //   排除数值为8和9的牌
-                if (i<7 && temp_arr[i+1]!=0 && temp_arr[i+2]!=0)             //   如果后面有连续两张牌
+                if (i < 7 && temp_arr[i + 1] != 0 && temp_arr[i + 2] != 0)             //   如果后面有连续两张牌
                 {
                     temp_arr[i]--;
                     temp_arr[i + 1]--;
@@ -342,18 +341,18 @@ public class Naizi {
         return sum;
     }
 
-    private static int getNumber(int[] temp_arr){
+    private static int getNumber(int[] temp_arr) {
         int result = 0;
-        for(int i=0;i<9;i++) {
-            if(temp_arr[i] > 0) {
-                if(temp_arr[i] >= 3){
+        for (int i = 0; i < 9; i++) {
+            if (temp_arr[i] > 0) {
+                if (temp_arr[i] >= 3) {
                     temp_arr[i] -= 3;
                     i--;
-                }else {
-                    if(temp_arr[i]==2){
+                } else {
+                    if (temp_arr[i] == 2) {
                         temp_arr[i] = 0;
                         result++;
-                    }else {
+                    } else {
                         if (i < 7) {
                             if (temp_arr[i + 1] > 0 && temp_arr[i + 2] > 0) {
                                 temp_arr[i]--;
@@ -400,7 +399,7 @@ public class Naizi {
             }
         }
 
-      // System.out.println("getNumber ===>  "+result+"  ==>> ");
+        // System.out.println("getNumber ===>  "+result+"  ==>> ");
         /*for(int a = 0;a<temp_arr.length;a++){
             System.out.print(temp_arr[a]+",");
         }
@@ -409,38 +408,38 @@ public class Naizi {
         return result;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         List<int[]> tempList = new ArrayList<>();
-      tempList.add(new int[]{2,1,2,0,0,0,0,0,0,     2,0,0,3,0,0,0,0,0,     0,0,1,1,1,0,0,0,0,   0,0,0,0,1,0,0});
-       //tempList.add(new int[]{1,0,0,0,0,0,0,1,0,     1,2,1,1,0,0,0,0,0,     1,0,1,0,0,0,1,1,0,   0,0,0,0,3,0,0});
-      // tempList.add(new int[]{0,0,0,0,0,0,1,1,1,     0,0,2,0,3,1,1,1,0,     0,0,1,1,1,0,0,0,0,   0,0,0,0,0,0,0});
-      //tempList.add(new int[]{0,1,0,1,0,0,0,2,0,     0,1,1,0,0,0,1,1,1,     0,0,0,0,0,3,0,0,0,   0,0,0,0,2,0,0});
+        tempList.add(new int[]{2, 1, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0});
+        //tempList.add(new int[]{1,0,0,0,0,0,0,1,0,     1,2,1,1,0,0,0,0,0,     1,0,1,0,0,0,1,1,0,   0,0,0,0,3,0,0});
+        // tempList.add(new int[]{0,0,0,0,0,0,1,1,1,     0,0,2,0,3,1,1,1,0,     0,0,1,1,1,0,0,0,0,   0,0,0,0,0,0,0});
+        //tempList.add(new int[]{0,1,0,1,0,0,0,2,0,     0,1,1,0,0,0,1,1,1,     0,0,0,0,0,3,0,0,0,   0,0,0,0,2,0,0});
 
-       // int [] test = new int[]{0,1,0,1,0,0,0,2,0,     0,1,1,0,0,0,1,1,1,     0,0,0,0,0,3,0,0,0,   0,0,0,0,2,0,0};
-        for(int i=0;i<tempList.size();i++){
-           boolean fal = getNeedHunNum(tempList.get(i));
-            if(fal){
+        // int [] test = new int[]{0,1,0,1,0,0,0,2,0,     0,1,1,0,0,0,1,1,1,     0,0,0,0,0,3,0,0,0,   0,0,0,0,2,0,0};
+        for (int i = 0; i < tempList.size(); i++) {
+            boolean fal = getNeedHunNum(tempList.get(i));
+            if (fal) {
                 System.out.println("HU LE");
-            }else{
+            } else {
                 System.out.print("====================================== ");
-                for(int a = 0;a<tempList.get(i).length;a++){
-                    System.out.print(tempList.get(i)[a]+",");
+                for (int a = 0; a < tempList.get(i).length; a++) {
+                    System.out.print(tempList.get(i)[a] + ",");
                 }
                 System.out.println();
             }
         }
-       // getNeedHunNum(test);
+        // getNeedHunNum(test);
     }
 
-    private static List<CheckObjectVO> deleteSameItemForList(List<CheckObjectVO> tempList){
-        HashMap<String,CheckObjectVO> tempMap = new HashMap<>();
+    private static List<CheckObjectVO> deleteSameItemForList(List<CheckObjectVO> tempList) {
+        HashMap<String, CheckObjectVO> tempMap = new HashMap<>();
         List<CheckObjectVO> result = new ArrayList<>();
-        for(int i=0;i<tempList.size();i++){
-           tempMap.put(tempList.get(i).ToString(),tempList.get(i));
+        for (int i = 0; i < tempList.size(); i++) {
+            tempMap.put(tempList.get(i).ToString(), tempList.get(i));
         }
-        Object[] temp =  tempMap.values().toArray();
-        for (int i=0;i<temp.length;i++){
-            result.add((CheckObjectVO)temp[i]);
+        Object[] temp = tempMap.values().toArray();
+        for (int i = 0; i < temp.length; i++) {
+            result.add((CheckObjectVO) temp[i]);
         }
         return result;
     }

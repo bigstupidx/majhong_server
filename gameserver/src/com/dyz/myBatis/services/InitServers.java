@@ -14,7 +14,6 @@ import java.io.Reader;
 public class InitServers {
 
 
-
     public void initServersFun() throws IOException {
         Reader reader = Resources.getResourceAsReader("myBatisConfig.xml");
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
@@ -30,14 +29,14 @@ public class InitServers {
         StandingsAccountRelationService.getInstance().initSetSession(sessionFactory);
         PlayRecordService.getInstance().initSetSession(sessionFactory);
 
-        
+
         //TaskTimer.showTimer();
         TaskTimer.headBag();
     }
 
     private static InitServers initServers = new InitServers();
 
-    public static InitServers getInstance(){
+    public static InitServers getInstance() {
         return initServers;
     }
 }

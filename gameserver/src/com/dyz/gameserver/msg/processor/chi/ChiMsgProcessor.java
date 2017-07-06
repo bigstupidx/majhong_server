@@ -14,25 +14,22 @@ import com.dyz.gameserver.pojo.CardVO;
 import com.dyz.persist.util.JsonUtilTool;
 
 /**
- * 
  * @author luck
- *
  */
 public class ChiMsgProcessor extends MsgProcessor implements
         INotAuthProcessor {
     @Override
     public void process(GameSession gameSession, ClientRequest request) throws Exception {
         RoomLogic roomLogic = RoomManager.getInstance().getRoom(gameSession.getRole(Avatar.class).getRoomVO().getRoomId());
-        if(roomLogic != null){
-           CardVO cardVO = JsonUtilTool.fromJson(request.getString(),CardVO.class);
-           boolean isChi =  roomLogic.chiCard(gameSession.getRole(Avatar.class),cardVO);
-           if(isChi){
-        	   gameSession.sendMsg(new ChiResponse(1, "1"));
-           }
-           else{
-        	   System.out.println("吃不起");
-           }
-        }else{
+        if (roomLogic != null) {
+            CardVO cardVO = JsonUtilTool.fromJson(request.getString(), CardVO.class);
+            boolean isChi = roomLogic.chiCard(gameSession.getRole(Avatar.class), cardVO);
+            if (isChi) {
+                gameSession.sendMsg(new ChiResponse(1, "1"));
+            } else {
+                System.out.println("吃不起");
+            }
+        } else {
             gameSession.sendMsg(new ErrorResponse(ErrorCode.Error_000005));
         }
 

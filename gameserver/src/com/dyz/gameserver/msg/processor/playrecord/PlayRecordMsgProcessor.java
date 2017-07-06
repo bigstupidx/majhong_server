@@ -13,22 +13,21 @@ import com.dyz.persist.util.StringUtil;
 
 /**
  * 获取游戏回放
- * @author luck
  *
+ * @author luck
  */
-public class PlayRecordMsgProcessor  extends MsgProcessor implements
-INotAuthProcessor{
+public class PlayRecordMsgProcessor extends MsgProcessor implements
+        INotAuthProcessor {
 
-	@Override
-	public void process(GameSession gameSession, ClientRequest request) throws Exception {
-          String id = request.getString();
-          if(StringUtil.isInteger(id,0,0)){
-        	  PlayRecord playRecord = PlayRecordService.getInstance().selectByStandingsDetailId(Integer.parseInt(id));
-        	  gameSession.sendMsg(new playrecordResponse(1, playRecord.getPlayrecord()));
-          }
-          else{
-        	  gameSession.sendMsg(new ErrorResponse(ErrorCode.Error_000019));
-          }
-	}
-	
+    @Override
+    public void process(GameSession gameSession, ClientRequest request) throws Exception {
+        String id = request.getString();
+        if (StringUtil.isInteger(id, 0, 0)) {
+            PlayRecord playRecord = PlayRecordService.getInstance().selectByStandingsDetailId(Integer.parseInt(id));
+            gameSession.sendMsg(new playrecordResponse(1, playRecord.getPlayrecord()));
+        } else {
+            gameSession.sendMsg(new ErrorResponse(ErrorCode.Error_000019));
+        }
+    }
+
 }

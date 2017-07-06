@@ -14,18 +14,17 @@ import net.sf.json.JSONObject;
 
 /**
  * @author luck
- *
  */
 public class BuhuaMsgProcessor extends MsgProcessor implements
         INotAuthProcessor {
     @Override
     public void process(GameSession gameSession, ClientRequest request) throws Exception {
         RoomLogic roomLogic = RoomManager.getInstance().getRoom(gameSession.getRole(Avatar.class).getRoomVO().getRoomId());
-        if(roomLogic != null){
+        if (roomLogic != null) {
             JSONObject json = JSONObject.fromObject(request.getString());
-            int cardPoint = (int)json.get("cardPoint");
-           roomLogic.buhua(gameSession.getRole(Avatar.class),cardPoint, 0);
-        }else{
+            int cardPoint = (int) json.get("cardPoint");
+            roomLogic.buhua(gameSession.getRole(Avatar.class), cardPoint, 0);
+        } else {
             gameSession.sendMsg(new ErrorResponse(ErrorCode.Error_000005));
         }
     }

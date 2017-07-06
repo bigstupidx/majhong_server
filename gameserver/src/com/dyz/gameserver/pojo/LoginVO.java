@@ -17,7 +17,7 @@ public class LoginVO {
     private String city;
 
     private int sex;
-    
+
     private String IP;
 
 
@@ -77,12 +77,12 @@ public class LoginVO {
         this.sex = sex;
     }
 
-	public String getIP() {
-		return IP;
-	}
+    public String getIP() {
+        return IP;
+    }
 
-	public void setIP(String iP) {
-		IP = iP;
-	}
-    
+    public void setIP(String iP) {
+        IP = iP;
+    }
+
 }

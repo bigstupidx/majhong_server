@@ -12,7 +12,6 @@ import java.io.IOException;
 public class MessageBoxResponse extends ServerResponse {
     /**
      * 必须调用此方法设置消息号
-     *
      */
     public MessageBoxResponse(JSONObject json) {
         super(1, ConnectAPI.MessageBox_Notice);
@@ -20,7 +19,7 @@ public class MessageBoxResponse extends ServerResponse {
             output.writeUTF(json.toString());
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             output.close();
         }
     }

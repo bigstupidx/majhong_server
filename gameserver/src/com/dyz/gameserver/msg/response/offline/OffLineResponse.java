@@ -7,22 +7,22 @@ import com.dyz.gameserver.commons.message.ServerResponse;
 
 /**
  * 断线消息
- * @author luck
  *
+ * @author luck
  */
-public class OffLineResponse extends ServerResponse  {
+public class OffLineResponse extends ServerResponse {
 
-	public OffLineResponse(int status, String msgCode) {
-		super(status, ConnectAPI.OFF_LINE_RESPONSE);
-		if(status>0){
-			try {
-				output.writeUTF(msgCode);
-			} catch (IOException e) {
-				e.printStackTrace();
-			} finally {
-           	 output.close();
-			}
-		}
-	}
+    public OffLineResponse(int status, String msgCode) {
+        super(status, ConnectAPI.OFF_LINE_RESPONSE);
+        if (status > 0) {
+            try {
+                output.writeUTF(msgCode);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                output.close();
+            }
+        }
+    }
 
 }

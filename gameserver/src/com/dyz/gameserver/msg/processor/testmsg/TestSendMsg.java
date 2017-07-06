@@ -12,8 +12,8 @@ import com.dyz.gameserver.msg.response.testmsg.TestSebdMsgResponse;
 public class TestSendMsg extends MsgProcessor implements INotAuthProcessor {
     @Override
     public void process(GameSession gameSession, ClientRequest request) throws Exception {
-        System.out.println("request:"+request.getString());
-        gameSession.sendMsg(new TestSebdMsgResponse(1,"hello"));
+        System.out.println("request:" + request.getString());
+        gameSession.sendMsg(new TestSebdMsgResponse(1, "hello"));
 //        if(request.getString() != null) {
 //            TestMsgVO testMsgVO = JsonUtilTool.fromJson(request.getString(), TestMsgVO.class);
 //            gameSession.sendMsg(new TestSebdMsgResponse(1,"hello"));

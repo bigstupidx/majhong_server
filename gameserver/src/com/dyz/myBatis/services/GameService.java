@@ -7,18 +7,18 @@ import com.dyz.myBatis.daoImp.GameDaoImp;
 
 public class GameService {
 
-	 private GameMapper gameMap;
+    private GameMapper gameMap;
 
-	 
-	 private static GameService gameService = new GameService();
-	 public static GameService getInstance(){
-	        return gameService;
-	    }
 
-	    public void initSetSession(SqlSessionFactory sqlSessionFactory){
-	    	gameMap = new GameDaoImp(sqlSessionFactory);
-	    }
-	    
-	    
-	    
+    private static GameService gameService = new GameService();
+
+    public static GameService getInstance() {
+        return gameService;
+    }
+
+    public void initSetSession(SqlSessionFactory sqlSessionFactory) {
+        gameMap = new GameDaoImp(sqlSessionFactory);
+    }
+
+
 }

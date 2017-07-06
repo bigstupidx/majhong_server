@@ -12,14 +12,14 @@ public interface RoomInfoMapper {
     int insertSelective(RoomInfo record);
 
     RoomInfo selectByPrimaryKey(Integer id);
-    
+
     RoomInfo selectRoomId(Integer roomid);
 
     int updateByPrimaryKeySelective(RoomInfo record);
 
     int updateByPrimaryKey(RoomInfo record);
-    
+
     int selectCount();
-    
+
     int selectTodayCount(Date date);
 }

@@ -9,16 +9,13 @@ import net.sf.json.JSONObject;
 import java.io.IOException;
 
 /**
- * 
  * @author luck
- *
  */
 public class TimeWaitResponse extends ServerResponse {
     /**
-     *
      * @param status
      */
-	public TimeWaitResponse(int status, int time) {
+    public TimeWaitResponse(int status, int time) {
         super(status, ConnectAPI.TIME_WAIT_RESPONSE);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("time", time);

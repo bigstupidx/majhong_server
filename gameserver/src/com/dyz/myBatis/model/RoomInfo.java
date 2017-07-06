@@ -22,7 +22,7 @@ public class RoomInfo {
     private String addwordcard;
 
     private String name;
-    
+
     private Date createTime;
 
     private int cardNumb;//创建房间 消耗房卡数量
@@ -39,22 +39,22 @@ public class RoomInfo {
     private String fengfa;
 
     public int getCardNumb() {
-		return cardNumb;
-	}
+        return cardNumb;
+    }
 
-	public void setCardNumb(int cardNumb) {
-		this.cardNumb = cardNumb;
-	}
+    public void setCardNumb(int cardNumb) {
+        this.cardNumb = cardNumb;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
-	public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -169,36 +169,47 @@ public class RoomInfo {
     public Integer getRoundtype() {
         return roundtype;
     }
+
     public void setRoundtype(Integer roundtype) {
         this.roundtype = roundtype;
     }
+
     public Integer getYuanzishu() {
         return yuanzishu;
     }
+
     public void setYuanzishu(Integer yuanzishu) {
         this.yuanzishu = yuanzishu;
     }
+
     public Integer getYuanzijiesu() {
         return yuanzijiesu;
     }
+
     public void setYuanzijiesu(Integer yuanzijiesu) {
         this.yuanzijiesu = yuanzijiesu;
     }
+
     public String getZhanzhuangbi() {
         return zhanzhuangbi;
     }
+
     public void setZhanzhuangbi(String zhanzhuangbi) {
         this.zhanzhuangbi = zhanzhuangbi == null ? null : zhanzhuangbi.trim();
     }
+
     public String getGuozhuangbi() {
         return guozhuangbi;
     }
+
     public void setGuozhuangbi(String guozhuangbi) {
         this.guozhuangbi = guozhuangbi == null ? null : guozhuangbi.trim();
     }
+
     public String getFengfa() {
         return fengfa;
     }
+
     public void setFengfa(String fengfa) {
         this.fengfa = fengfa == null ? null : fengfa.trim();
     }

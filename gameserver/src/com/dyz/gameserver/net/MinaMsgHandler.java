@@ -10,59 +10,60 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 前段
- * @author Administrator
  *
+ * @author Administrator
  */
-public class MinaMsgHandler extends IoHandlerAdapter{
-	
-	private static final Logger logger = LoggerFactory.getLogger(MinaMsgHandler.class);
-	
-//	@Override
+public class MinaMsgHandler extends IoHandlerAdapter {
+
+    private static final Logger logger = LoggerFactory.getLogger(MinaMsgHandler.class);
+
+    //	@Override
 //	public void sessionCreated(IoSession session) throws Exception {
 //
 //	}
-	@Override
-	public void sessionOpened(IoSession session) throws Exception{
-		new GameSession(session);
-		//logger.info("a session create from ip {}",session.getRemoteAddress());
+    @Override
+    public void sessionOpened(IoSession session) throws Exception {
+        new GameSession(session);
+        //logger.info("a session create from ip {}",session.getRemoteAddress());
 
-	}
-	
-	@Override
-	public void messageReceived(IoSession session, Object message)
-			throws Exception {
-		ClientRequest clientRequest = (ClientRequest) message;
-		GameSession gameSession = GameSession.getInstance(session);
-		if (gameSession == null) {
-			//logger.info("gameSession == null");
-			return;
-		}
-		
-		GameServer.msgDispatcher.dispatchMsg(gameSession,clientRequest);
-	}
-	
-	@Override
-	public void exceptionCaught(IoSession session, Throwable cause)
-			throws Exception {
-		//强制退出
-		//logger.error("服务器出错 {}",cause.getMessage());
-		//cause.printStackTrace();
-	}
+    }
 
-	/**
-	 * 关闭SESSION
-	 * @param session
-	 * @throws Exception
+    @Override
+    public void messageReceived(IoSession session, Object message)
+            throws Exception {
+        ClientRequest clientRequest = (ClientRequest) message;
+        GameSession gameSession = GameSession.getInstance(session);
+        if (gameSession == null) {
+            //logger.info("gameSession == null");
+            return;
+        }
+
+        GameServer.msgDispatcher.dispatchMsg(gameSession, clientRequest);
+    }
+
+    @Override
+    public void exceptionCaught(IoSession session, Throwable cause)
+            throws Exception {
+        //强制退出
+        //logger.error("服务器出错 {}",cause.getMessage());
+        //cause.printStackTrace();
+    }
+
+    /**
+     * 关闭SESSION
+     *
+     * @param session
+     * @throws Exception
      */
-	@Override
-	public void sessionClosed(IoSession session) throws Exception {
-		//logger.info("a session closed ip:{}",session.getRemoteAddress());
-		GameSession gameSession = GameSession.getInstance(session);
-		if(gameSession!=null){
-			gameSession.close();
-		}
+    @Override
+    public void sessionClosed(IoSession session) throws Exception {
+        //logger.info("a session closed ip:{}",session.getRemoteAddress());
+        GameSession gameSession = GameSession.getInstance(session);
+        if (gameSession != null) {
+            gameSession.close();
+        }
 
-	}
-	
-	
+    }
+
+
 }
